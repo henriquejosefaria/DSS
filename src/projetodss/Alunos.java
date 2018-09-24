@@ -10,14 +10,7 @@ import java.util.Map;
 
 public class Alunos {
     
-    private Map<Integer, Aluno> alunos;
-    
-    /**
-     * 
-       public void pagarQuota(Integer numero, Double valor)
-       public Aluno getAluno(int num)
-       public void addAluno(Aluno a)
-     */
+    private Map<Integer, Aluno> alunos; //organizado por numero
     
     public Alunos() {
        alunos = new HashMap<>();
@@ -25,6 +18,14 @@ public class Alunos {
     
     public Alunos(HashMap<Integer, Aluno> alunos) {
        this.alunos = new HashMap<>(alunos);
+    }
+    
+    public void addAluno(Aluno a){
+        alunos.put(a.getNumero(), a.clone());
+    }
+    
+    public Aluno getAluno(int n){
+        return alunos.get(n).clone();
     }
     
     /*public Map<Integer, Aluno> getAlunos(){

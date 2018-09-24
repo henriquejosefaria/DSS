@@ -34,6 +34,16 @@ public class Aluno {
         this.quotasAPagar = new ArrayList<>(quotasAPagar);
     }
 
+    public Aluno(Aluno c){
+        this.numero = c.getNumero();
+        this.nome = c.getNome();
+        this.morada = c.getMorada();
+        this.curso = c.getCurso();
+        this.anoLectivo = c.getAnoLectivo();
+        this.quotasPagas = c.getQuotasPagas();
+        this.quotasAPagar = c.getQuotasAPagar();
+    }
+    
     public String getNome() {
         return this.nome;
     }
@@ -104,8 +114,8 @@ public class Aluno {
         return b;
     }
     
-    public Object clone() {
-        return new Aluno(this.nome, this.numero, this.curso, this.anoLectivo, this.morada, this.quotasPagas, this.quotasAPagar);
+    public Aluno clone() {
+        return new Aluno(this);
     }
 
     public String toString() {

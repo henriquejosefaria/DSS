@@ -5,6 +5,7 @@
  */
 package projetodss;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -20,9 +21,9 @@ public class Quotas {
        this.quotas = new HashMap<>(quotas);
     }
     
-    /*public void addQuota(Quota quota){
+    public void addQuota(Quota quota){
         quotas.put(quota.getId(),quota.clone());
-    }*/
+    }
     
     public void removeQuota (int id){
         quotas.remove(id);
@@ -32,7 +33,15 @@ public class Quotas {
        return quotas.containsKey(id);
     }
     
-    /*public Quota getQuota(int id){
+    /*public void pagarQuota(int id){
+        //mudar "estado" para true
+    }*/
+    
+    public Quota getQuota(int id){
         return quotas.get(id).clone();
+    }
+    
+    /*public Map<Integer, Quota> getQuotas(){
+        
     }*/
 }
