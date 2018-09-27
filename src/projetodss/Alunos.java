@@ -28,8 +28,7 @@ public class Alunos {
         return alunos.get(n).clone();
     }
     
-    /*public Map<Integer, Aluno> getAlunos(){
-        
-    }*/
-    
+    public Map<Integer, Aluno> getAlunos(){
+       return this.alunos; 
+    }
 }

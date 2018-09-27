@@ -22,7 +22,7 @@ public class Quotas {
     }
     
     public void addQuota(Quota quota){
-        quotas.put(quota.getId(),quota.clone());
+        quotas.put(quota.getId(),quota);//.clone());
     }
     
     public void removeQuota (int id){
@@ -38,7 +38,7 @@ public class Quotas {
     }*/
     
     public Quota getQuota(int id){
-        return quotas.get(id).clone();
+        return quotas.get(id);//.clone();
     }
     
     /*public Map<Integer, Quota> getQuotas(){
