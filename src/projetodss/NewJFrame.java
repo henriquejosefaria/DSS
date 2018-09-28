@@ -5,6 +5,8 @@
  */
 package projetodss;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,7 +21,10 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
         DefaultTableModel d = new DefaultTableModel();
-        d.addRow(new Object[]{"a","133","dad"});
+        d.setColumnIdentifiers(new String [] {"Número", "Nome", "Quotas"});
+        for(Map.Entry<Integer,Aluno> membro : membros.entrySet()){
+            d.addRow(new Object[]{membro.getKey().toString(),membro.getValue().toString()});//,new JButton});
+        }
         jTable2.setModel(d);
         
     }
@@ -43,12 +48,7 @@ public class NewJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
+            new Object [][] {},
             new String [] {
                 "Número", "Nome", "Quotas"
             }
@@ -124,4 +124,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+    private Alunos alunos = new Alunos();
+    private Quotas quotas = new Quotas();
+    private Map <Integer,Aluno> membros = new HashMap<Integer,Aluno>();
 }
