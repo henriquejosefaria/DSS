@@ -21,9 +21,9 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
         DefaultTableModel d = new DefaultTableModel();
-        d.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo"});
+        d.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
         for(Map.Entry<Integer,Aluno> membro : membros.entrySet()){
-            d.addRow(new Object[]{membro.getKey().toString(),membro.getValue().toString()});//,new JButton});
+            d.addRow(new Object[]{membro.getKey().toString(),membro.getValue().getNome(),membro.getValue().getMorada(),Integer.toString(membro.getValue().getAnoLectivo()),"23"});//,new JButton});
         }
         jTable2.setModel(d);
         
