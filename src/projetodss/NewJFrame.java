@@ -7,6 +7,7 @@ package projetodss;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,9 +24,15 @@ public class NewJFrame extends javax.swing.JFrame {
         DefaultTableModel d = new DefaultTableModel();
         d.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
         for(Map.Entry<Integer,Aluno> membro : membros.entrySet()){
-            d.addRow(new Object[]{membro.getKey().toString(),membro.getValue().getNome(),membro.getValue().getMorada(),Integer.toString(membro.getValue().getAnoLectivo()),"23"});//,new JButton});
+            d.addRow(new Object[]{membro.getKey().toString(),membro.getValue().getNome(),membro.getValue().getMorada(),Integer.toString(membro.getValue().getAnoLectivo()),""});//,new JButton});
+        }
+        int x = d.getColumnCount()-1;
+        for(int i = 0; i < d.getRowCount();i++){
+            d.setValueAt(new JButton(), i, x);
         }
         jTable2.setModel(d);
+        //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
+        //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
         
     }
 
