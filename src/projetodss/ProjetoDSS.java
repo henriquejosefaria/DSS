@@ -4,18 +4,16 @@
  * and open the template in the editor.
  */
 package projetodss;
-
+import javax.swing.JButton;
+import javax.swing.JTable;
 /**
  *
  * @author André
  */
 public class ProjetoDSS {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+    private Quotas quotas = new Quotas();
+    private Alunos alunos = new Alunos();
+    private JTable table = new JTable();
     
 }

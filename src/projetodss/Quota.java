@@ -77,21 +77,21 @@ public class Quota {
         }
         return b;
     }
-    
+    /*
     public Quota clone() {
         return new Quota(this);
-    }
+    }*/
     
     public String toString() {
-        StringBuffer sb = new StringBuffer("Quota(");
+        StringBuffer sb = new StringBuffer("{");
         sb.append(this.id);
-        sb.append(",");
+        sb.append(", ");
         sb.append(this.data);
-        sb.append(",");
+        sb.append(", ");
         sb.append(this.valor);
-        sb.append(",");
+        sb.append(", ");
         sb.append(this.estado);
-        sb.append(",");
+        sb.append("}");
         return sb.toString();
     }
 }

@@ -41,7 +41,18 @@ public class Quotas {
         return quotas.get(id);//.clone();
     }
     
-    /*public Map<Integer, Quota> getQuotas(){
-        
-    }*/
+    public Map<Integer, Quota> getQuotas(){
+        return this.quotas;
+    }
+    
+    
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("{");
+        for(Quota a : quotas.values()){
+            sb.append(a.toString());
+        }
+        sb.append("}, ");
+        return sb.toString();
+    }
 }

@@ -31,4 +31,14 @@ public class Alunos {
     public Map<Integer, Aluno> getAlunos(){
        return this.alunos; 
     }
+    
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("{");
+        for(Aluno a : alunos.values()){
+            sb.append(a.toString());
+        }
+        sb.append("}, ");
+        return sb.toString();
+    }
 }

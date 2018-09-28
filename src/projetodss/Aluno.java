@@ -11,14 +11,13 @@ public class Aluno {
     
     private String nome;
     private int numero;
-    private String curso;
     private int anoLectivo;
     private String morada;
     private ArrayList<Integer> quotasPagas; //organizadas por IDs
     private ArrayList<Integer> quotasAPagar; //organizadas por IDs
 
     public Aluno() {
-       nome = curso = morada = "";
+       nome = morada = "";
        numero = anoLectivo = 0;
        quotasPagas = new ArrayList<>();
        quotasAPagar = new ArrayList<>();
@@ -27,7 +26,6 @@ public class Aluno {
     public Aluno(String nome,int numero,String curso,int anoLectivo,String morada,ArrayList<Integer> quotasPagas, ArrayList<Integer> quotasAPagar) {
         this.nome = nome;
         this.numero = numero;
-        this.curso = curso;
         this.anoLectivo = anoLectivo;
         this.morada = morada;
         this.quotasPagas = new ArrayList<>(quotasPagas);
@@ -38,7 +36,6 @@ public class Aluno {
         this.numero = c.getNumero();
         this.nome = c.getNome();
         this.morada = c.getMorada();
-        this.curso = c.getCurso();
         this.anoLectivo = c.getAnoLectivo();
         this.quotasPagas = c.getQuotasPagas();
         this.quotasAPagar = c.getQuotasAPagar();
@@ -50,10 +47,6 @@ public class Aluno {
 
     public int getNumero() {
         return this.numero;
-    }
-
-    public String getCurso() {
-        return this.curso;
     }
     
     public int getAnoLectivo() {
@@ -80,10 +73,6 @@ public class Aluno {
         this.numero = numero;
     }
     
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-    
     public void setAnoLectivo(int anoLectivo) {
         this.anoLectivo = anoLectivo;
     }
@@ -93,7 +82,11 @@ public class Aluno {
     }
     
     public void addQuotaPaga(int idQuotaPaga) {
-        this.quotasPagas.add(idQuotaPaga);
+        // tratar exceção
+        if (this.quotasAPagar.contains(idQuotaPaga)){
+            this.quotasAPagar.remove(idQuotaPaga);
+            this.quotasPagas.add(idQuotaPaga);
+        }
     }
     
     public void addQuotaAPagar(int idQuotaAPagar) {
@@ -107,7 +100,6 @@ public class Aluno {
             Aluno a = (Aluno)o;
             b = this.nome.equals(a.getNome()) &&
                 this.numero == a.getNumero() &&
-                this.curso.equals(a.getCurso()) &&
                 this.anoLectivo == a.getAnoLectivo() &&
                 this.morada.equals(a.getMorada());
         }
@@ -119,17 +111,15 @@ public class Aluno {
     }
 
     public String toString() {
-        StringBuffer sb = new StringBuffer("Aluno(");
+        StringBuffer sb = new StringBuffer("{");
         sb.append(this.nome);
-        sb.append(",");
+        sb.append(", ");
         sb.append(this.numero);
-        sb.append(",");
-        sb.append(this.curso);
-        sb.append(",");
+        sb.append(", ");
         sb.append(this.anoLectivo);
-        sb.append(")");
+        sb.append(", ");
         sb.append(this.morada);
-        sb.append(")");
+        sb.append("}");
         return sb.toString();
     }
 }
