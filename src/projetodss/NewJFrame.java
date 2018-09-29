@@ -44,7 +44,6 @@ public class NewJFrame extends javax.swing.JFrame {
         
         for(Map.Entry<Integer,Aluno> membro : membros.entrySet()){
             d.addRow(new Object[]{membro.getKey().toString(),membro.getValue().getNome(),membro.getValue().getMorada(),Integer.toString(membro.getValue().getAnoLectivo()),""});//,new JButton});
-
         }
         int x = d.getColumnCount()-1;
         for(int i = 0; i < d.getRowCount();i++){
