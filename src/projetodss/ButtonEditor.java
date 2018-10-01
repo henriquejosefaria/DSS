@@ -8,6 +8,7 @@ package projetodss;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -26,13 +27,14 @@ class ButtonEditor extends DefaultCellEditor {
     if(numero.length() > 1){
         numeroAluno = Integer.parseInt(numero.substring(1));
     }
-    this.alunos = alunos;
-    this.quotas = quotas;
+    //this.alunos = alunos; // retirar????
+    //this.quotas = quotas; // retirar????
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        fireEditingStopped();
+        quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas(); // criada a 1ª lista
+        quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar(); // criada a 2ª lista
       }
     });
   }
@@ -74,6 +76,6 @@ class ButtonEditor extends DefaultCellEditor {
   }
   
   private Integer numeroAluno;
-  private Alunos alunos = new Alunos();
-  private Quotas quotas = new Quotas();
+  private ArrayList<Integer> quotasPagas = new ArrayList<Integer>();
+  private ArrayList<Integer> quotasAPagar = new ArrayList<Integer>();
 }
