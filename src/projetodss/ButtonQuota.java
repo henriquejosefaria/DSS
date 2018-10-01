@@ -15,14 +15,14 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-class ButtonEditor extends DefaultCellEditor {
+class ButtonQuota extends DefaultCellEditor {
   protected JButton button;
 
   private String label;
 
   private boolean isPushed;
 
-  public ButtonEditor(JCheckBox checkBox, Alunos alunos, Quotas quotas,String numero) {
+  public ButtonQuota(JCheckBox checkBox, Alunos alunos, Quotas quotas,String numero) {
     super(checkBox);
     if(numero.length() > 1){
         numeroAluno = Integer.parseInt(numero.substring(1));
