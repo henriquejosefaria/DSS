@@ -24,25 +24,23 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
         DefaultTableModel d = new DefaultTableModel();
-        d.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
         
         DefaultTableModel dm = new DefaultTableModel();
-           dm.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
     dm.setDataVector(new Object[][] { { "a83099", "Filipe Cunha","Vila Verde","2018","no idea" },
         { "a83434", "Andre Henrique ou Miguel","Margem Norte","2021","que vergonha" } }, new Object[] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
    
          jTable2.setModel(dm);
         jTable2.getColumn("Quota").setCellRenderer(new ButtonRenderer());
     jTable2.getColumn("Quota").setCellEditor(
-    new ButtonQuota(new JCheckBox(),alunos,quotas,(String)dm.getValueAt(jTable2.getEditingRow(),0)));
-     jTable2.setModel(dm);
+    new ButtonQuota(new JCheckBox(),alunos,quotas,(String)dm.getValueAt(0,0))); // jTable2.getEditingRow() isto é que estava a estourar
+    // jTable2.setModel(dm);
    // JScrollPane scroll = new JScrollPane(jTable2);
    // getContentPane().add(scroll);
     //setVisible(true);
     
         
         
-        for(Map.Entry<Integer,Aluno> membro : membros.entrySet()){
+           for(Map.Entry<Integer,Aluno> membro : membros.entrySet()){
             d.addRow(new Object[]{membro.getKey().toString(),membro.getValue().getNome(),membro.getValue().getMorada(),Integer.toString(membro.getValue().getAnoLectivo()),""});//,new JButton});
         }
         int x = d.getColumnCount()-1;

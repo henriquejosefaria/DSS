@@ -33,8 +33,12 @@ class ButtonQuota extends DefaultCellEditor {
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        QuotaFrame ola = new  QuotaFrame();
+        ola.setVisible(true);
+        System.out.println("Wtfs");
         quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas(); // criada a 1ª lista
         quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar(); // criada a 2ª lista
+
       }
     });
   }
@@ -56,11 +60,12 @@ class ButtonQuota extends DefaultCellEditor {
 
   public Object getCellEditorValue() {
     if (isPushed) {
-      //numeroAluno = 
+              //numeroAluno = 
       //
       // 
       JOptionPane.showMessageDialog(button, label + ": Ouch!");
       // System.out.println(label + ": Ouch!");
+
     }
     isPushed = false;
     return new String(label);
