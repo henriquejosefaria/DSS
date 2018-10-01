@@ -21,8 +21,13 @@ class ButtonEditor extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonEditor(JCheckBox checkBox) {
+  public ButtonEditor(JCheckBox checkBox, Alunos alunos, Quotas quotas,String numero) {
     super(checkBox);
+    if(numero.length() > 1){
+        numeroAluno = Integer.parseInt(numero.substring(1));
+    }
+    this.alunos = alunos;
+    this.quotas = quotas;
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
@@ -49,7 +54,8 @@ class ButtonEditor extends DefaultCellEditor {
 
   public Object getCellEditorValue() {
     if (isPushed) {
-      // 
+      //numeroAluno = 
+      //
       // 
       JOptionPane.showMessageDialog(button, label + ": Ouch!");
       // System.out.println(label + ": Ouch!");
@@ -66,4 +72,8 @@ class ButtonEditor extends DefaultCellEditor {
   protected void fireEditingStopped() {
     super.fireEditingStopped();
   }
+  
+  private Integer numeroAluno;
+  private Alunos alunos = new Alunos();
+  private Quotas quotas = new Quotas();
 }

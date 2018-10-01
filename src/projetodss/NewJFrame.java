@@ -34,7 +34,7 @@ public class NewJFrame extends javax.swing.JFrame {
          jTable2.setModel(dm);
         jTable2.getColumn("Quota").setCellRenderer(new ButtonRenderer());
     jTable2.getColumn("Quota").setCellEditor(
-        new ButtonEditor(new JCheckBox()));
+        new ButtonEditor(new JCheckBox(),alunos,quotas,(String)dm.getValueAt(1,0)));
      jTable2.setModel(dm);
    // JScrollPane scroll = new JScrollPane(jTable2);
    // getContentPane().add(scroll);
