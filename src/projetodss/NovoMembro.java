@@ -6,6 +6,7 @@
 package projetodss;
 
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,10 +17,11 @@ public class NovoMembro extends javax.swing.JFrame {
     /**
      * Creates new form NovoMembro
      */
-    public NovoMembro(Alunos alunos,NewJFrame jFrame) {
+    public NovoMembro(Alunos alunos,NewJFrame jFrame, DefaultTableModel dm) {
         initComponents();
         this.memberFrame = jFrame;
         this.alunos = alunos;
+        this.dm = dm;
     }
 
     /**
@@ -132,10 +134,7 @@ public class NovoMembro extends javax.swing.JFrame {
             alunos.addAluno(new Aluno(nome,numero,anoLectivo,morada,quotasPagas,quotasAPagar));
             System.out.println(alunos.toString());
             System.out.println("Entrei");
-            //memberFrame.dm.addRow(new Object[]{nome,numero,anoLectivo,morada,"Quota"});
-            memberFrame.setVisible(false);
-            new NewJFrame().setVisible(true);
-            //memberFrame.setVisible(true);
+            dm.addRow(new Object[]{numero,nome,morada,Integer.toString(anoLectivo),"Quota"});
         }
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -195,4 +194,5 @@ public class NovoMembro extends javax.swing.JFrame {
     private ArrayList<Integer> quotasAPagar = new ArrayList<>(); //organizadas por IDs
     private Alunos alunos;
     private NewJFrame memberFrame;
+    private DefaultTableModel dm;
 }

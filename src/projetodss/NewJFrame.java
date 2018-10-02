@@ -61,6 +61,7 @@ public class NewJFrame extends javax.swing.JFrame {
         for(int i = 0; i < dm.getRowCount();i++){
             dm.setValueAt(new JButton(), i, x);
         }
+        dfm = dm;
       //  jTable2.setModel(d);
         //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
         //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
@@ -165,7 +166,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         NovoMembro membroNovo = new NovoMembro(alunos,this);
+         NovoMembro membroNovo = new NovoMembro(alunos,this,dfm);
          membroNovo.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -218,4 +219,5 @@ public class NewJFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private Alunos alunos = new Alunos();
     private Quotas quotas = new Quotas();
+    private DefaultTableModel dfm;
 }
