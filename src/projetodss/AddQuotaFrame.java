@@ -5,6 +5,8 @@
  */
 package projetodss;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Adriana
@@ -13,12 +15,13 @@ public class AddQuotaFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form AddQuotaFrame
-     */
-    public AddQuotaFrame(Quotas quotas, Alunos alunos, Integer numeroAluno) {
+     * */
+    public AddQuotaFrame(Quotas quotas, Alunos alunos, Integer numeroAluno,QuotaFrame quotaFrame,DefaultTableModel dm) {
         initComponents();
         this.quotas = quotas;
         this.alunos = alunos;
         this.numeroAluno = numeroAluno;
+        this.quotaFrame = quotaFrame;
     }
 
     /**
@@ -84,7 +87,7 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public void adicionaQuota(Quota quota){
         quotas.addQuota(quota);
-        Aluno owner =  alunos.getAluno(quota.getOwner());
+        Aluno owner =  alunos.getAluno(numeroAluno);
         if(quota.getEstado()){
            owner.addQuotaPaga(quota.getId());
         }
@@ -98,8 +101,10 @@ public class AddQuotaFrame extends javax.swing.JFrame {
        if(svalor.matches("[0-9]+")){
            int valor = Integer.parseInt(svalor);
            System.out.println(numeroAluno);
-           Quota novaQuota = new Quota(valor,numeroAluno);
-           
+           Quota novaQuota = new Quota(numeroAluno,valor);
+           adicionaQuota(novaQuota);
+
+           quotaFrame.refreshTable(dm,alunos.getAluno(numeroAluno).getQuotasAPagar(),alunos.getAluno(numeroAluno).getQuotasPagas());
         }
        
        
@@ -153,4 +158,6 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     private Quotas quotas;
     private Alunos alunos;
     private Integer numeroAluno;
+    private QuotaFrame quotaFrame;
+    private DefaultTableModel dm;
 }

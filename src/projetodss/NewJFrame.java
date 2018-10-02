@@ -34,7 +34,7 @@ public class NewJFrame extends javax.swing.JFrame {
        adicionaQuota(quota4);
        
        Aluno k = alunos.getAluno(83099);
-       System.out.println(k.getQuotasAPagar().toString() + k.getQuotasPagas());
+       
         DefaultTableModel d = new DefaultTableModel();
         
         DefaultTableModel dm = new DefaultTableModel();

@@ -33,15 +33,10 @@ public class QuotaFrame extends javax.swing.JFrame {
         Aluno k = alunos.getAluno(83099);
        System.out.println(k.getQuotasAPagar().toString() + k.getQuotasPagas());
         DefaultTableModel dm = new DefaultTableModel();
+        this.dm = dm;
         
         dm.setColumnIdentifiers(new String [] {"Id", "Data", "Valor", "Estado","Pagamento"});
-        for(Integer idAPagar : quotasAPagar){
-            dm.addRow(new Object[]{idAPagar.toString(),quotas.getQuotas().get(idAPagar).getData(),quotas.getQuotas().get(idAPagar).getValor(),quotas.getQuotas().get(idAPagar).getEstado(),"Pagar"});//,new JButton});
-        }
-        
-        for(Integer idPagas : quotasPagas){
-            dm.addRow(new Object[]{idPagas.toString(),quotas.getQuotas().get(idPagas).getData(),quotas.getQuotas().get(idPagas).getValor(),quotas.getQuotas().get(idPagas).getEstado(),"Pagar"});//,new JButton});
-        }
+        refreshTable(dm,quotasAPagar,quotasPagas);
         
        // dm.setDataVector(new Object[][] { { "Propina1", "22/34/4353","340€","Pagar" },
         //{ "Propina1", "22/34/4353","340€","Pagar" } }, new Object[] {"Id", "Data de emissão", "Valor","Estado","Pagamento"});
@@ -59,6 +54,17 @@ public class QuotaFrame extends javax.swing.JFrame {
         //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
         //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
         
+    }
+    
+    public void refreshTable(DefaultTableModel dm ,ArrayList<Integer> quotasAPagar, ArrayList<Integer> quotasPagas){
+        System.out.println(quotasAPagar.size() +"wtf   "+ quotasPagas.size());
+        for(Integer idAPagar : quotasAPagar){
+            dm.addRow(new Object[]{idAPagar.toString(),quotas.getQuotas().get(idAPagar).getData(),quotas.getQuotas().get(idAPagar).getValor(),quotas.getQuotas().get(idAPagar).getEstado(),"Pagar"});//,new JButton});
+        }
+        
+        for(Integer idPagas : quotasPagas){
+            dm.addRow(new Object[]{idPagas.toString(),quotas.getQuotas().get(idPagas).getData(),quotas.getQuotas().get(idPagas).getValor(),quotas.getQuotas().get(idPagas).getEstado(),"Pagar"});//,new JButton});
+        }
     }
 
     /**
@@ -140,7 +146,7 @@ public class QuotaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new AddQuotaFrame(quotas,alunos,numeroAluno).setVisible(true);
+        new AddQuotaFrame(quotas,alunos,numeroAluno,this,dm).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -162,4 +168,5 @@ public class QuotaFrame extends javax.swing.JFrame {
     private Quotas quotas = new Quotas();
     private Integer numeroAluno; 
     private Map <Integer,Aluno> membros = new HashMap<Integer,Aluno>();
+    private DefaultTableModel dm;
 }
