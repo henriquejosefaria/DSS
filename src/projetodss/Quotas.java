@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class Quotas {
     
     private Map<Integer, Quota> quotas; //organizado por Ids das quotas
+    private int bitch;
     
     public Quotas() {
        quotas = new HashMap<>();
