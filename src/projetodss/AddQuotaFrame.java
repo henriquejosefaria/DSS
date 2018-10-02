@@ -104,6 +104,9 @@ public class AddQuotaFrame extends javax.swing.JFrame {
            //System.out.println(numeroAluno);
            Quota novaQuota = new Quota(numeroAluno,valor);
            adicionaQuota(novaQuota);
+           for (int i = dm.getRowCount() - 1; i >= 0; i--) {
+                dm.removeRow(i);
+           }
            quotaFrame.refreshTable(dm,alunos.getAluno(numeroAluno).getQuotasAPagar(),alunos.getAluno(numeroAluno).getQuotasPagas());
         }
     }//GEN-LAST:event_OnMouseClicked
