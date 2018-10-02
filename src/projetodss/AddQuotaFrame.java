@@ -97,7 +97,8 @@ public class AddQuotaFrame extends javax.swing.JFrame {
        String svalor = jTextField1.getText();
        if(svalor.matches("[0-9]+")){
            int valor = Integer.parseInt(svalor);
-            Quota novaQuota = new Quota(valor,numeroAluno);
+           System.out.println(numeroAluno);
+           Quota novaQuota = new Quota(valor,numeroAluno);
            
         }
        

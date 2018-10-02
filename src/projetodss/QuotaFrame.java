@@ -24,6 +24,7 @@ public class QuotaFrame extends javax.swing.JFrame {
      */
     public QuotaFrame(ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas,Integer numeroAluno) {
         initComponents();
+        this.numeroAluno = numeroAluno;
      //   DefaultTableModel d = new DefaultTableModel();
       //  d.setColumnIdentifiers(new String [] {"Descrição", "Data Limite", "Valor","Pagamento"});
         
