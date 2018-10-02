@@ -22,7 +22,7 @@ public class QuotaFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public QuotaFrame(ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas) {
+    public QuotaFrame(ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas,Integer numeroAluno) {
         initComponents();
      //   DefaultTableModel d = new DefaultTableModel();
       //  d.setColumnIdentifiers(new String [] {"Descrição", "Data Limite", "Valor","Pagamento"});
@@ -135,7 +135,7 @@ public class QuotaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
+        new AddQuotaFrame(quotas,alunos,numeroAluno).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -155,5 +155,6 @@ public class QuotaFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private Alunos alunos = new Alunos();
     private Quotas quotas = new Quotas();
+    private Integer numeroAluno; 
     private Map <Integer,Aluno> membros = new HashMap<Integer,Aluno>();
 }

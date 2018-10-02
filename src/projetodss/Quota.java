@@ -21,11 +21,10 @@ public class Quota {
        owner = 0;
     }
 
-    public Quota(int id, String data, double valor, boolean estado, int owner) {
-        this.id = id;
-        this.data = data;
+    public Quota(double valor, int owner) {
+        this.data = "2018";
         this.valor = valor;
-        this.estado = estado;
+        this.estado = false;
         this.owner = owner;
     }
     

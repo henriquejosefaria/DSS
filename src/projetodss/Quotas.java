@@ -12,18 +12,22 @@ import java.util.HashMap;
 public class Quotas {
     
     private Map<Integer, Quota> quotas; //organizado por Ids das quotas
-    private int bitch;
+    private int contadorId;
     
     public Quotas() {
        quotas = new HashMap<>();
+       contadorId = 9000;
     }
     
     public Quotas(HashMap<Integer, Quota> quotas) {
        this.quotas = new HashMap<>(quotas);
+       contadorId = 9000;
     }
     
     public void addQuota(Quota quota){
+        quota.setId(contadorId);
         quotas.put(quota.getId(),quota);//.clone());
+        contadorId++;
     }
     
     public void removeQuota (int id){

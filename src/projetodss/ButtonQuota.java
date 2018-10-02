@@ -39,7 +39,7 @@ class ButtonQuota extends DefaultCellEditor {
        //quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas(); // criada a 1ª lista
        //quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar(); // criada a 2ª lista
         
-        QuotaFrame ola = new  QuotaFrame(quotasAPagar,quotasPagas,quotas);
+        QuotaFrame ola = new  QuotaFrame(quotasAPagar,quotasPagas,quotas,numeroAluno);
         ola.setVisible(true);
         System.out.println("Wtfs");
 

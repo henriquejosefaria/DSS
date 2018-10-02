@@ -14,8 +14,11 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     /**
      * Creates new form AddQuotaFrame
      */
-    public AddQuotaFrame() {
+    public AddQuotaFrame(Quotas quotas, Alunos alunos, Integer numeroAluno) {
         initComponents();
+        this.quotas = quotas;
+        this.alunos = alunos;
+        this.numeroAluno = numeroAluno;
     }
 
     /**
@@ -38,6 +41,11 @@ public class AddQuotaFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextPane1);
 
         jTextField1.setText("Valor...");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Confirmar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,12 +82,31 @@ public class AddQuotaFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void adicionaQuota(Quota quota){
+        quotas.addQuota(quota);
+        Aluno owner =  alunos.getAluno(quota.getOwner());
+        if(quota.getEstado()){
+           owner.addQuotaPaga(quota.getId());
+        }
+        else{
+           owner.addQuotaAPagar(quota.getId());
+        }
+    }
+    
     private void OnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnMouseClicked
-       String valor = jTextField1.getText();
+       String svalor = jTextField1.getText();
+       if(svalor.matches("[0-9]+")){
+           int valor = Integer.parseInt(svalor);
+            Quota novaQuota = new Quota(valor,numeroAluno);
+           
+        }
        
        
     }//GEN-LAST:event_OnMouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,7 +138,7 @@ public class AddQuotaFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddQuotaFrame().setVisible(true);
+               // new AddQuotaFrame().setVisible(true);
             }
         });
     }
@@ -122,4 +149,7 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+    private Quotas quotas;
+    private Alunos alunos;
+    private Integer numeroAluno;
 }

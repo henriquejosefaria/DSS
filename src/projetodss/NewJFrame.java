@@ -54,17 +54,6 @@ public class NewJFrame extends javax.swing.JFrame {
         //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
         
     }
-
-    public void adicionaQuota(Quota quota){
-        quotas.addQuota(quota);
-        Aluno owner =  alunos.getAluno(quota.getOwner());
-        if(quota.getEstado()){
-           owner.addQuotaPaga(quota.getId());
-        }
-        else{
-           owner.addQuotaAPagar(quota.getId());
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
