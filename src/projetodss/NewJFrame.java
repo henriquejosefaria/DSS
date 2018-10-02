@@ -6,6 +6,7 @@
 package projetodss;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -35,11 +36,10 @@ public class NewJFrame extends javax.swing.JFrame {
        
        Aluno k = alunos.getAluno(83099);
        
-        DefaultTableModel d = new DefaultTableModel();
-        
         DefaultTableModel dm = new DefaultTableModel();
         dm.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
         for(Map.Entry<Integer,Aluno> aluno : alunos.getAlunos().entrySet()){
+            System.out.println(aluno.getKey());
             dm.addRow(new Object[]{aluno.getKey().toString(),aluno.getValue().getNome(),aluno.getValue().getMorada(),Integer.toString(aluno.getValue().getAnoLectivo()),"Quota"});//,new JButton});
         }
    // dm.setDataVector(new Object[][] { { "a83099", "Filipe Cunha","Vila Verde","2018","no idea" },
@@ -57,9 +57,9 @@ public class NewJFrame extends javax.swing.JFrame {
         
         
 
-        int x = d.getColumnCount()-1;
-        for(int i = 0; i < d.getRowCount();i++){
-            d.setValueAt(new JButton(), i, x);
+        int x = dm.getColumnCount()-1;
+        for(int i = 0; i < dm.getRowCount();i++){
+            dm.setValueAt(new JButton(), i, x);
         }
       //  jTable2.setModel(d);
         //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
@@ -129,6 +129,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         jMenuItem1.setText("add member");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -158,6 +163,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jTable1.getValueAt(jTable1.getSelectedRow(),0);
         System.out.println( jTable1.getValueAt(jTable1.getSelectedRow(),0));
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+         NovoMembro membroNovo = new NovoMembro(alunos,this);
+         membroNovo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,9 +214,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private Alunos alunos = new Alunos();
     private Quotas quotas = new Quotas();
-    private Map <Integer,Aluno> membros = new HashMap<Integer,Aluno>();
 }

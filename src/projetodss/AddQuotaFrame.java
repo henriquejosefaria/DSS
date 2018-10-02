@@ -22,6 +22,7 @@ public class AddQuotaFrame extends javax.swing.JFrame {
         this.alunos = alunos;
         this.numeroAluno = numeroAluno;
         this.quotaFrame = quotaFrame;
+        this.dm = dm;
     }
 
     /**
@@ -33,17 +34,13 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextPane1.setText("Insira o valor correspondente à quota:");
-        jScrollPane1.setViewportView(jTextPane1);
-
-        jTextField1.setText("Valor...");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -57,29 +54,37 @@ public class AddQuotaFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Valor:");
+
+        jLabel2.setText("Insira o valor correspondente a quota:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButton1)
                 .addGap(73, 73, 73))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1))
                 .addGap(30, 30, 30))
         );
 
@@ -88,26 +93,18 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     public void adicionaQuota(Quota quota){
         quotas.addQuota(quota);
         Aluno owner =  alunos.getAluno(numeroAluno);
-        if(quota.getEstado()){
-           owner.addQuotaPaga(quota.getId());
-        }
-        else{
-           owner.addQuotaAPagar(quota.getId());
-        }
+        owner.addQuotaAPagar(quota.getId());
     }
     
     private void OnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnMouseClicked
        String svalor = jTextField1.getText();
        if(svalor.matches("[0-9]+")){
            int valor = Integer.parseInt(svalor);
-           System.out.println(numeroAluno);
+           //System.out.println(numeroAluno);
            Quota novaQuota = new Quota(numeroAluno,valor);
            adicionaQuota(novaQuota);
-
            quotaFrame.refreshTable(dm,alunos.getAluno(numeroAluno).getQuotasAPagar(),alunos.getAluno(numeroAluno).getQuotasPagas());
         }
-       
-       
     }//GEN-LAST:event_OnMouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -151,9 +148,9 @@ public class AddQuotaFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
     private Quotas quotas;
     private Alunos alunos;
