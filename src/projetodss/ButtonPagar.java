@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 class ButtonPagar extends DefaultCellEditor {
   protected JButton button;
@@ -22,7 +23,7 @@ class ButtonPagar extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonPagar(JCheckBox checkBox) {
+  public ButtonPagar(JCheckBox checkBox, JTable table , DefaultTableModel dm) {
     super(checkBox);
     //this.alunos = alunos; // retirar????
     //this.quotas = quotas; // retirar????
@@ -30,7 +31,11 @@ class ButtonPagar extends DefaultCellEditor {
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        fireEditingStopped();
+          System.out.println("ola");
+        dm.setValueAt("Pago",table.getSelectedRow(),3);
+        //dm.isCellEditable(
+        
+       // button.setVisible(false);
       }
     });
   }
@@ -52,11 +57,6 @@ class ButtonPagar extends DefaultCellEditor {
 
   public Object getCellEditorValue() {
     if (isPushed) {
-      //numeroAluno = 
-      //
-      // 
-      JOptionPane.showMessageDialog(button, label + ": Ouch!");
-      // System.out.println(label + ": Ouch!");
     }
     isPushed = false;
     return new String(label);

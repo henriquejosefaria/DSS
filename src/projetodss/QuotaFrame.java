@@ -27,25 +27,18 @@ public class QuotaFrame extends javax.swing.JFrame {
         this.numeroAluno = numeroAluno;
         this.alunos = alunos;
         this.quotas = quotas;
-        System.out.println(quotasAPagar.size() +" " +quotasPagas.size());
-     //   DefaultTableModel d = new DefaultTableModel();
-      //  d.setColumnIdentifiers(new String [] {"Descrição", "Data Limite", "Valor","Pagamento"});
-        Aluno k = alunos.getAluno(83099);
-       System.out.println(k.getQuotasAPagar().toString() + k.getQuotasPagas());
+        this.dm = dm;
+        
         DefaultTableModel dm = new DefaultTableModel();
         this.dm = dm;
         
         dm.setColumnIdentifiers(new String [] {"Id", "Data", "Valor", "Estado","Pagamento"});
         refreshTable(dm,quotasAPagar,quotasPagas);
         
-       // dm.setDataVector(new Object[][] { { "Propina1", "22/34/4353","340€","Pagar" },
-        //{ "Propina1", "22/34/4353","340€","Pagar" } }, new Object[] {"Id", "Data de emissão", "Valor","Estado","Pagamento"});
-   
-         jTable1.setModel(dm);
+        jTable1.setModel(dm);
         jTable1.getColumn("Pagamento").setCellRenderer(new ButtonRenderer());
-    jTable1.getColumn("Pagamento").setCellEditor(
-        new ButtonPagar(new JCheckBox()));
-     jTable1.setModel(dm);
+        jTable1.getColumn("Pagamento").setCellEditor(
+        new ButtonPagar(new JCheckBox(),jTable1,dm));
    // JScrollPane scroll = new JScrollPane(jTable2);
    // getContentPane().add(scroll);
     //setVisible(true);
@@ -57,13 +50,12 @@ public class QuotaFrame extends javax.swing.JFrame {
     }
     
     public void refreshTable(DefaultTableModel dm ,ArrayList<Integer> quotasAPagar, ArrayList<Integer> quotasPagas){
-        System.out.println(quotasAPagar.size() +"wtf   "+ quotasPagas.size());
         for(Integer idAPagar : quotasAPagar){
-            dm.addRow(new Object[]{idAPagar.toString(),quotas.getQuotas().get(idAPagar).getData(),quotas.getQuotas().get(idAPagar).getValor(),quotas.getQuotas().get(idAPagar).getEstado(),"Pagar"});//,new JButton});
+            dm.addRow(new Object[]{idAPagar.toString(),quotas.getQuotas().get(idAPagar).getData(),quotas.getQuotas().get(idAPagar).getValor(),"Nao Pago","Pagar"});//,new JButton});
         }
         
         for(Integer idPagas : quotasPagas){
-            dm.addRow(new Object[]{idPagas.toString(),quotas.getQuotas().get(idPagas).getData(),quotas.getQuotas().get(idPagas).getValor(),quotas.getQuotas().get(idPagas).getEstado(),"Pagar"});//,new JButton});
+            dm.addRow(new Object[]{idPagas.toString(),quotas.getQuotas().get(idPagas).getData(),quotas.getQuotas().get(idPagas).getValor(),"Pago","Pagar"});//,new JButton});
         }
     }
 
