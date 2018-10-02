@@ -166,7 +166,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         NovoMembro membroNovo = new NovoMembro(alunos,this,dfm);
+         NovoMembro membroNovo = new NovoMembro(alunos,quotas,this,dfm);
          membroNovo.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

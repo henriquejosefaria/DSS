@@ -6,6 +6,8 @@
 package projetodss;
 
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,10 +19,11 @@ public class NovoMembro extends javax.swing.JFrame {
     /**
      * Creates new form NovoMembro
      */
-    public NovoMembro(Alunos alunos,NewJFrame jFrame, DefaultTableModel dm) {
+    public NovoMembro(Alunos alunos,Quotas quotas, NewJFrame jFrame, DefaultTableModel dm) {
         initComponents();
         this.memberFrame = jFrame;
         this.alunos = alunos;
+        this.quotas = quotas;
         this.dm = dm;
     }
 
@@ -134,7 +137,7 @@ public class NovoMembro extends javax.swing.JFrame {
             alunos.addAluno(new Aluno(nome,numero,anoLectivo,morada,quotasPagas,quotasAPagar));
             System.out.println(alunos.toString());
             System.out.println("Entrei");
-            dm.addRow(new Object[]{numero,nome,morada,Integer.toString(anoLectivo),"Quota"});
+            dm.addRow(new Object[]{s1,nome,morada,Integer.toString(anoLectivo),"Quota"});
         }
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -195,4 +198,5 @@ public class NovoMembro extends javax.swing.JFrame {
     private Alunos alunos;
     private NewJFrame memberFrame;
     private DefaultTableModel dm;
+    private Quotas quotas;
 }
