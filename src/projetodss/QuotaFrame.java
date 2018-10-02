@@ -87,7 +87,8 @@ public class QuotaFrame extends javax.swing.JFrame {
         jMenu4.setText("Edit");
         jMenuBar2.add(jMenu4);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Quotas");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
