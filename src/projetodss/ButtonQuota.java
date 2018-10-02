@@ -34,14 +34,14 @@ class ButtonQuota extends DefaultCellEditor {
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         String numero = (String) table.getValueAt(table.getSelectedRow(),0);
-        numeroAluno = Integer.parseInt(numero.substring(1));
+        numeroAluno = Integer.parseInt(numero);
+        System.out.println(numeroAluno);
+       quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas(); // criada a 1ª lista
+       quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar(); // criada a 2ª lista
         
-       //quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas(); // criada a 1ª lista
-       //quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar(); // criada a 2ª lista
-        
-        QuotaFrame ola = new  QuotaFrame(quotasAPagar,quotasPagas,quotas,numeroAluno);
+        QuotaFrame ola = new  QuotaFrame(alunos,quotasAPagar,quotasPagas,quotas,numeroAluno);
         ola.setVisible(true);
-        System.out.println("Wtfs");
+        
 
       }
     });

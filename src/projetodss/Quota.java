@@ -21,7 +21,7 @@ public class Quota {
        owner = 0;
     }
 
-    public Quota(double valor, int owner) {
+    public Quota(int owner, double valor) {
         this.data = "2018";
         this.valor = valor;
         this.estado = false;

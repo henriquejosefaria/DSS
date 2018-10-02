@@ -107,10 +107,7 @@ public class Aluno {
         }
         return b;
     }
-    
-    public Aluno clone() {
-        return new Aluno(this);
-    }
+   
 
     public String toString() {
         StringBuffer sb = new StringBuffer("{");

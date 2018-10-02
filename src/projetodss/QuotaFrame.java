@@ -22,12 +22,16 @@ public class QuotaFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public QuotaFrame(ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas,Integer numeroAluno) {
+    public QuotaFrame(Alunos alunos, ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas,Integer numeroAluno) {
         initComponents();
         this.numeroAluno = numeroAluno;
+        this.alunos = alunos;
+        this.quotas = quotas;
+        System.out.println(quotasAPagar.size() +" " +quotasPagas.size());
      //   DefaultTableModel d = new DefaultTableModel();
       //  d.setColumnIdentifiers(new String [] {"Descrição", "Data Limite", "Valor","Pagamento"});
-        
+        Aluno k = alunos.getAluno(83099);
+       System.out.println(k.getQuotasAPagar().toString() + k.getQuotasPagas());
         DefaultTableModel dm = new DefaultTableModel();
         
         dm.setColumnIdentifiers(new String [] {"Id", "Data", "Valor", "Estado","Pagamento"});

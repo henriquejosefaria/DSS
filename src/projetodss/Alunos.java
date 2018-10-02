@@ -16,6 +16,10 @@ public class Alunos {
     public Alunos() {
        alunos = new HashMap<>();
        Aluno aluno1 = new Aluno();
+       ArrayList<Integer> ola = new ArrayList<Integer>();
+       ola.add(88888);
+       ola.add(77777);
+       ola.add(66666);
        Aluno aluno2 = new Aluno("Filipe",83099,2018,"Vila Verde",new ArrayList<Integer>(),new ArrayList<Integer>());
        Aluno aluno3 = new Aluno("Andre",82260,2018,"Braga",new ArrayList<Integer>(),new ArrayList<Integer>());
        addAluno(aluno1);
@@ -28,11 +32,11 @@ public class Alunos {
     }
     
     public void addAluno(Aluno a){
-        alunos.put(a.getNumero(), a.clone());
+        alunos.put(a.getNumero(), a);
     }
     
     public Aluno getAluno(int n){
-        return alunos.get(n).clone();
+        return alunos.get(n);
     }
     
     public Map<Integer, Aluno> getAlunos(){

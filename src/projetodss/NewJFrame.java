@@ -23,6 +23,18 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     public NewJFrame() {
         initComponents();
+       Quota quota1 = new Quota(83099,350);
+       Quota quota2 = new Quota(83099,456);
+       Quota quota3 = new Quota(83099,999);
+       Quota quota4 = new Quota(83099,435);
+       
+       adicionaQuota(quota1);
+       adicionaQuota(quota2);
+       adicionaQuota(quota3);
+       adicionaQuota(quota4);
+       
+       Aluno k = alunos.getAluno(83099);
+       System.out.println(k.getQuotasAPagar().toString() + k.getQuotasPagas());
         DefaultTableModel d = new DefaultTableModel();
         
         DefaultTableModel dm = new DefaultTableModel();
@@ -53,6 +65,18 @@ public class NewJFrame extends javax.swing.JFrame {
         //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
         //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
         
+    }
+    
+    
+        public void adicionaQuota(Quota quota){
+        quotas.addQuota(quota);
+        Aluno owner =  alunos.getAluno(quota.getOwner());
+        if(quota.getEstado()){
+           owner.addQuotaPaga(quota.getId());
+        }
+        else{
+           owner.addQuotaAPagar(quota.getId());
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
