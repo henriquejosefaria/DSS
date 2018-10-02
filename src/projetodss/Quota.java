@@ -11,19 +11,22 @@ public class Quota {
     private String data; //talvez mudar para outro formato?
     private double valor;
     private boolean estado; //0: não paga / 1: paga
+    private int owner;
     
     public Quota() {
        id = 0;
        data = "";
        valor = 0;
        estado = false;
+       owner = 0;
     }
 
-    public Quota(int id, String data, double valor, boolean estado) {
+    public Quota(int id, String data, double valor, boolean estado, int owner) {
         this.id = id;
         this.data = data;
         this.valor = valor;
         this.estado = estado;
+        this.owner = owner;
     }
     
     public Quota(Quota c){
@@ -31,6 +34,7 @@ public class Quota {
         this.data = c.getData();
         this.valor = c.getValor();
         this.estado = c.getEstado();
+        this.owner = c.getOwner();
    }
     
     public int getId() {
@@ -49,6 +53,10 @@ public class Quota {
         return this.estado;
     }
     
+    public int getOwner(){
+        return this.owner;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -63,6 +71,10 @@ public class Quota {
     
     public void setEstado(boolean estado){
         this.estado = estado;
+    }
+    
+    public void setOwner(int owner){
+        this.owner = owner;
     }
     
     public boolean equals(Object o) {

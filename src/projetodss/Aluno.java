@@ -17,13 +17,15 @@ public class Aluno {
     private ArrayList<Integer> quotasAPagar; //organizadas por IDs
 
     public Aluno() {
-       nome = morada = "";
-       numero = anoLectivo = 0;
+       nome = "Henrique";
+       morada = "Porto";
+       numero = 84354;
+       anoLectivo = 2018;
        quotasPagas = new ArrayList<>();
        quotasAPagar = new ArrayList<>();
     }
 
-    public Aluno(String nome,int numero,String curso,int anoLectivo,String morada,ArrayList<Integer> quotasPagas, ArrayList<Integer> quotasAPagar) {
+    public Aluno(String nome,int numero,int anoLectivo,String morada,ArrayList<Integer> quotasPagas, ArrayList<Integer> quotasAPagar) {
         this.nome = nome;
         this.numero = numero;
         this.anoLectivo = anoLectivo;

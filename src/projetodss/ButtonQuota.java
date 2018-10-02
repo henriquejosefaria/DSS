@@ -22,22 +22,26 @@ class ButtonQuota extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonQuota(JCheckBox checkBox, Alunos alunos, Quotas quotas,String numero) {
+  public ButtonQuota(JCheckBox checkBox, Alunos alunos, Quotas quotas,JTable table) {
     super(checkBox);
-    if(numero.length() > 1){
+   /* if(numero.length() > 1){
         numeroAluno = Integer.parseInt(numero.substring(1));
-    }
+    }*/
     //this.alunos = alunos; // retirar????
     //this.quotas = quotas; // retirar????
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        QuotaFrame ola = new  QuotaFrame();
+        String numero = (String) table.getValueAt(table.getSelectedRow(),0);
+        numeroAluno = Integer.parseInt(numero.substring(1));
+        
+       //quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas(); // criada a 1ª lista
+       //quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar(); // criada a 2ª lista
+        
+        QuotaFrame ola = new  QuotaFrame(quotasAPagar,quotasPagas,quotas);
         ola.setVisible(true);
         System.out.println("Wtfs");
-        quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas(); // criada a 1ª lista
-        quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar(); // criada a 2ª lista
 
       }
     });

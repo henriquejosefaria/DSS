@@ -5,6 +5,7 @@
  */
 package projetodss;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
@@ -21,14 +22,24 @@ public class QuotaFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public QuotaFrame() {
+    public QuotaFrame(ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas) {
         initComponents();
      //   DefaultTableModel d = new DefaultTableModel();
       //  d.setColumnIdentifiers(new String [] {"Descrição", "Data Limite", "Valor","Pagamento"});
         
         DefaultTableModel dm = new DefaultTableModel();
-        dm.setDataVector(new Object[][] { { "Propina1", "22/34/4353","340€","Pagar" },
-        { "Propina1", "22/34/4353","340€","Pagar" } }, new Object[] {"Descrição", "Data Limite", "Valor","Pagamento"});
+        
+        dm.setColumnIdentifiers(new String [] {"Id", "Data", "Valor", "Estado","Pagamento"});
+        for(Integer idAPagar : quotasAPagar){
+            dm.addRow(new Object[]{idAPagar.toString(),quotas.getQuotas().get(idAPagar).getData(),quotas.getQuotas().get(idAPagar).getValor(),quotas.getQuotas().get(idAPagar).getEstado(),"Pagar"});//,new JButton});
+        }
+        
+        for(Integer idPagas : quotasPagas){
+            dm.addRow(new Object[]{idPagas.toString(),quotas.getQuotas().get(idPagas).getData(),quotas.getQuotas().get(idPagas).getValor(),quotas.getQuotas().get(idPagas).getEstado(),"Pagar"});//,new JButton});
+        }
+        
+       // dm.setDataVector(new Object[][] { { "Propina1", "22/34/4353","340€","Pagar" },
+        //{ "Propina1", "22/34/4353","340€","Pagar" } }, new Object[] {"Id", "Data de emissão", "Valor","Estado","Pagamento"});
    
          jTable1.setModel(dm);
         jTable1.getColumn("Pagamento").setCellRenderer(new ButtonRenderer());
@@ -64,7 +75,6 @@ public class QuotaFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -91,16 +101,20 @@ public class QuotaFrame extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("add member");
+        jMenuItem1.setActionCommand("Adicionar Quota");
+        jMenuItem1.setLabel("adicionaQuota");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
+        jMenuItem1.getAccessibleContext().setAccessibleName("Add Quota");
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
-
-        jMenu5.setText("Quotas");
-        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -120,48 +134,18 @@ public class QuotaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QuotaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QuotaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QuotaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QuotaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new QuotaFrame().setVisible(true);
-            }
-        });
-    }
-
+*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
