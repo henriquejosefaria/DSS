@@ -5,9 +5,10 @@
  */
 package projetodss;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Aluno {
+public class Aluno implements Serializable {
     
     private String nome;
     private int numero;

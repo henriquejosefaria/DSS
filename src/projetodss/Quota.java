@@ -5,7 +5,9 @@
  */
 package projetodss;
 
-public class Quota {
+import java.io.Serializable;
+
+public class Quota implements Serializable {
     
     private int id;
     private String data; //talvez mudar para outro formato?

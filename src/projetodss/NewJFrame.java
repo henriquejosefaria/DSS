@@ -5,6 +5,7 @@
  */
 package projetodss;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
+import java.lang.ClassNotFoundException;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,31 +28,49 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     public NewJFrame() {
         initComponents();
-       Quota quota1 = new Quota(83099,350);
-       Quota quota2 = new Quota(83099,456);
-       Quota quota3 = new Quota(83099,999);
-       Quota quota4 = new Quota(83099,435);
-       
-       adicionaQuota(quota1);
-       adicionaQuota(quota2);
-       adicionaQuota(quota3);
-       adicionaQuota(quota4);
-       
-       Aluno k = alunos.getAluno(83099);
-       
+        try{
+                this.p = this.p.load();
+           }catch(FileNotFoundException e){
+               Aluno aluno1 = new Aluno();
+               Aluno aluno2 = new Aluno("Filipe",83099,2018,"Vila Verde",new ArrayList<Integer>(),new ArrayList<Integer>());
+               Aluno aluno3 = new Aluno("Andre",82260,2018,"Braga",new ArrayList<Integer>(),new ArrayList<Integer>());
+               this.p.addAluno(aluno1);
+               this.p.addAluno(aluno2);
+               this.p.addAluno(aluno3);
+               Quota quota1 = new Quota(83099,350);
+               Quota quota2 = new Quota(83099,456);
+               Quota quota3 = new Quota(83099,999);
+               Quota quota4 = new Quota(83099,435);
+               
+               this.p.addQuota(quota1);
+               this.p.addQuota(quota2);
+               this.p.addQuota(quota3);
+               this.p.addQuota(quota4);
+               
+               Aluno k = this.p.getAluno(83099);
+           }catch(IOException e){
+               e.printStackTrace();
+               System.out.println("\nErro: Input/ Output erro!");
+           }catch(ClassNotFoundException e){
+               e.printStackTrace();
+               System.out.println("\nErro: Class não encontrada!");
+           }
+        try{
+            this.p.save();
+        } catch(IOException e){
+               e.printStackTrace();
+               System.out.println("\nErro: Input/ Output erro!");
+           }
         DefaultTableModel dm = new DefaultTableModel();
         dm.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
-        for(Map.Entry<Integer,Aluno> aluno : alunos.getAlunos().entrySet()){
+        for(Map.Entry<Integer,Aluno> aluno : this.p.getHashAlunos().entrySet()){
             System.out.println(aluno.getKey());
             dm.addRow(new Object[]{aluno.getKey().toString(),aluno.getValue().getNome(),aluno.getValue().getMorada(),Integer.toString(aluno.getValue().getAnoLectivo()),"Quota"});//,new JButton});
         }
-   // dm.setDataVector(new Object[][] { { "a83099", "Filipe Cunha","Vila Verde","2018","no idea" },
-     //   { "a83434", "Andre Henrique ou Miguel","Margem Norte","2021","que vergonha" } }, new Object[] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
-   
         jTable1.setModel(dm);
         jTable1.getColumn("Quota").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Quota").setCellEditor(
-    new ButtonQuota(new JCheckBox(),alunos,quotas,jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
+        new ButtonQuota(new JCheckBox(),this.p.getAlunos(),this.p.getQuotas(),jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
     // jTable2.setModel(dm);
    // JScrollPane scroll = new JScrollPane(jTable2);
    // getContentPane().add(scroll);
@@ -64,20 +86,9 @@ public class NewJFrame extends javax.swing.JFrame {
       //  jTable2.setModel(d);
         //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
         //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
-        
+       
     }
-    
-    
-        public void adicionaQuota(Quota quota){
-        quotas.addQuota(quota);
-        Aluno owner =  alunos.getAluno(quota.getOwner());
-        if(quota.getEstado()){
-           owner.addQuotaPaga(quota.getId());
-        }
-        else{
-           owner.addQuotaAPagar(quota.getId());
-        }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,10 +176,11 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         NovoMembro membroNovo = new NovoMembro(alunos,this);
+         NovoMembro membroNovo = new NovoMembro(p,this.p.getAlunos(),this);
          membroNovo.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -216,6 +228,5 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-    private Alunos alunos = new Alunos();
-    private Quotas quotas = new Quotas();
+    private ProjetoDSS p = new ProjetoDSS();
 }

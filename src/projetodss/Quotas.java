@@ -5,11 +5,12 @@
  */
 package projetodss;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-public class Quotas {
+public class Quotas implements Serializable {
     
     private Map<Integer, Quota> quotas; //organizado por Ids das quotas
     private int contadorId;
@@ -23,12 +24,22 @@ public class Quotas {
        this.quotas = new HashMap<>(quotas);
        contadorId = 9000;
     }
+    public Quotas(Quotas quotas){
+        this.quotas = new HashMap<Integer,Quota>();
+        this.contadorId = quotas.getContador();
+        this.setQuotas(quotas.getQuotas());
+    }
+    
+    public int getContador(){
+        return this.contadorId;
+    }
     
     public void addQuota(Quota quota){
         quota.setId(contadorId);
         quotas.put(quota.getId(),quota);//.clone());
         contadorId++;
     }
+    
     
     public void removeQuota (int id){
         quotas.remove(id);
@@ -48,6 +59,12 @@ public class Quotas {
     
     public Map<Integer, Quota> getQuotas(){
         return this.quotas;
+    }
+    
+    public void setQuotas(Map<Integer, Quota> quotas){
+        for(Map.Entry<Integer,Quota> q : quotas.entrySet()){
+            this.quotas.put(q.getKey(), q.getValue());
+        }
     }
     
     
