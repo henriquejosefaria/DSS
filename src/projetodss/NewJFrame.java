@@ -79,10 +79,10 @@ public class NewJFrame extends javax.swing.JFrame {
         
         
 
-        int x = dm.getColumnCount()-1;
+        /*int x = dm.getColumnCount()-1;
         for(int i = 0; i < dm.getRowCount();i++){
             dm.setValueAt(new JButton(), i, x);
-        }
+        }*/
       //  jTable2.setModel(d);
         //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
         //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));

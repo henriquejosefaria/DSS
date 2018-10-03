@@ -7,10 +7,6 @@ package projetodss;
 
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Adriana
- */
 public class AddQuotaFrame extends javax.swing.JFrame {
 
     /**
@@ -100,10 +96,9 @@ public class AddQuotaFrame extends javax.swing.JFrame {
        String svalor = jTextField1.getText();
        if(svalor.matches("[0-9]+")){
            int valor = Integer.parseInt(svalor);
-           //System.out.println(numeroAluno);
            Quota novaQuota = new Quota(numeroAluno,valor);
            adicionaQuota(novaQuota);
-           quotaFrame.refreshTable(dm,alunos.getAluno(numeroAluno).getQuotasAPagar(),alunos.getAluno(numeroAluno).getQuotasPagas());
+           dm.addRow(new Object[]{Integer.toString(novaQuota.getId()),quotas.getQuotas().get(novaQuota.getId()).getData(),quotas.getQuotas().get(novaQuota.getId()).getValor(),"Nao Pago","Pagar"});
         }
     }//GEN-LAST:event_OnMouseClicked
 
