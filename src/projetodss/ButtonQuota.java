@@ -22,7 +22,7 @@ class ButtonQuota extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonQuota(JCheckBox checkBox,ProjetoDSS p, Alunos alunos, Quotas quotas,JTable table) {
+  public ButtonQuota(JCheckBox checkBox,ProjetoDSS p,JTable table) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
@@ -30,10 +30,10 @@ class ButtonQuota extends DefaultCellEditor {
       public void actionPerformed(ActionEvent e) {
         String numero = (String) table.getValueAt(table.getSelectedRow(),0);
         numeroAluno = Integer.parseInt(numero);
-       quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas();
-       quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar();
+       quotasPagas = p.getAlunos().getAluno(numeroAluno).getQuotasPagas();
+       quotasAPagar = p.getAlunos().getAluno(numeroAluno).getQuotasAPagar();
         
-        QuotaFrame ola = new  QuotaFrame(p,alunos,quotasAPagar,quotasPagas,quotas,numeroAluno);
+        QuotaFrame ola = new  QuotaFrame(p,quotasAPagar,quotasPagas,numeroAluno);
         ola.setVisible(true);
         
 

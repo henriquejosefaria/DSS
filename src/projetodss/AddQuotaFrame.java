@@ -5,17 +5,19 @@
  */
 package projetodss;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class AddQuotaFrame extends javax.swing.JFrame {
 
-    /**
+    /**    
      * Creates new form AddQuotaFrame
      * */
-    public AddQuotaFrame(Quotas quotas, Alunos alunos, Integer numeroAluno,QuotaFrame quotaFrame,DefaultTableModel dm) {
+    public AddQuotaFrame(ProjetoDSS p, Integer numeroAluno,QuotaFrame quotaFrame,DefaultTableModel dm) {
         initComponents();
-        this.quotas = quotas;
-        this.alunos = alunos;
+        this.p = p;
         this.numeroAluno = numeroAluno;
         this.quotaFrame = quotaFrame;
         this.dm = dm;
@@ -88,8 +90,8 @@ public class AddQuotaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void adicionaQuota(Quota quota){
-        quotas.addQuota(quota);
-        Aluno owner =  alunos.getAluno(numeroAluno);
+        p.getQuotas().addQuota(quota);
+        Aluno owner =  p.getAlunos().getAluno(numeroAluno);
         owner.addQuotaAPagar(quota.getId());
     }
     
@@ -99,7 +101,12 @@ public class AddQuotaFrame extends javax.swing.JFrame {
            int valor = Integer.parseInt(svalor);
            Quota novaQuota = new Quota(numeroAluno,valor);
            adicionaQuota(novaQuota);
-           dm.addRow(new Object[]{Integer.toString(novaQuota.getId()),quotas.getQuotas().get(novaQuota.getId()).getData(),quotas.getQuotas().get(novaQuota.getId()).getValor(),"Nao Pago","Pagar"});
+           dm.addRow(new Object[]{Integer.toString(novaQuota.getId()),p.getQuotas().getQuotas().get(novaQuota.getId()).getData(),p.getQuotas().getQuotas().get(novaQuota.getId()).getValor(),"Nao Pago","Pagar"});
+           try {
+                p.save();
+            } catch (IOException ex) {
+                Logger.getLogger(AddQuotaFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_OnMouseClicked
 
@@ -148,8 +155,7 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-    private Quotas quotas;
-    private Alunos alunos;
+    private ProjetoDSS p;
     private Integer numeroAluno;
     private QuotaFrame quotaFrame;
     private DefaultTableModel dm;

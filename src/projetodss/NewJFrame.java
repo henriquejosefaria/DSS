@@ -70,22 +70,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jTable1.setModel(dm);
         jTable1.getColumn("Quota").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Quota").setCellEditor(
-        new ButtonQuota(new JCheckBox(),this.p,this.p.getAlunos(),this.p.getQuotas(),jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
-    // jTable2.setModel(dm);
-   // JScrollPane scroll = new JScrollPane(jTable2);
-   // getContentPane().add(scroll);
-    //setVisible(true);
-    
-        
-        
-
-        /*int x = dm.getColumnCount()-1;
-        for(int i = 0; i < dm.getRowCount();i++){
-            dm.setValueAt(new JButton(), i, x);
-        }*/
-      //  jTable2.setModel(d);
-        //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
-        //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
+        new ButtonQuota(new JCheckBox(),p,jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
        
     }
 
