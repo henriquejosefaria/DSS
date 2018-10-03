@@ -81,7 +81,7 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
     public void update(Observable o, Object arg) {
         Aluno novoAluno = (Aluno) arg;   
         System.out.println("wtf");
-        dm.addRow(new Object[]{novoAluno.getNumero(),novoAluno.getNome(),novoAluno.getMorada(),Integer.toString(novoAluno.getAnoLectivo()),"Quota"});//,new JButton});
+        dm.addRow(new Object[]{String.valueOf(novoAluno.getNumero()),novoAluno.getNome(),novoAluno.getMorada(),Integer.toString(novoAluno.getAnoLectivo()),"Quota"});//,new JButton});
       
     }
 

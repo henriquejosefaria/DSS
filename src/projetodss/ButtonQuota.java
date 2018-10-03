@@ -28,8 +28,12 @@ class ButtonQuota extends DefaultCellEditor {
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+          System.out.println("WOWOWOWOOW");
         String numero = (String) table.getValueAt(table.getSelectedRow(),0);
+        System.out.println(numero);
+        
         numeroAluno = Integer.parseInt(numero);
+        System.out.println(numeroAluno);
        quotasPagas = p.getAlunos().getAluno(numeroAluno).getQuotasPagas();
        quotasAPagar = p.getAlunos().getAluno(numeroAluno).getQuotasAPagar();
         
