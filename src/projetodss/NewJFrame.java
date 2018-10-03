@@ -39,32 +39,19 @@ public class NewJFrame extends javax.swing.JFrame {
         DefaultTableModel dm = new DefaultTableModel();
         dm.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
         for(Map.Entry<Integer,Aluno> aluno : alunos.getAlunos().entrySet()){
-            System.out.println(aluno.getKey());
             dm.addRow(new Object[]{aluno.getKey().toString(),aluno.getValue().getNome(),aluno.getValue().getMorada(),Integer.toString(aluno.getValue().getAnoLectivo()),"Quota"});//,new JButton});
         }
-   // dm.setDataVector(new Object[][] { { "a83099", "Filipe Cunha","Vila Verde","2018","no idea" },
-     //   { "a83434", "Andre Henrique ou Miguel","Margem Norte","2021","que vergonha" } }, new Object[] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
-   
+        
         jTable1.setModel(dm);
         jTable1.getColumn("Quota").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Quota").setCellEditor(
-    new ButtonQuota(new JCheckBox(),alunos,quotas,jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
-    // jTable2.setModel(dm);
-   // JScrollPane scroll = new JScrollPane(jTable2);
-   // getContentPane().add(scroll);
-    //setVisible(true);
+        new ButtonQuota(new JCheckBox(),alunos,quotas,jTable1));
     
-        
-        
-
-        int x = dm.getColumnCount()-1;
-        for(int i = 0; i < dm.getRowCount();i++){
-            dm.setValueAt(new JButton(), i, x);
-        }
+        //int x = dm.getColumnCount()-1;
+        //for(int i = 0; i < dm.getRowCount();i++){
+        //    dm.setValueAt(new JButton(), i, x);
+        //}
         dfm = dm;
-      //  jTable2.setModel(d);
-        //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
-        //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
         
     }
     
@@ -215,7 +202,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private Alunos alunos = new Alunos();
     private Quotas quotas = new Quotas();
