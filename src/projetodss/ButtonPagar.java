@@ -23,12 +23,14 @@ class ButtonPagar extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonPagar(JCheckBox checkBox, JTable table , DefaultTableModel dm) {
+  public ButtonPagar(JCheckBox checkBox, ProjetoDSS p, JTable table , DefaultTableModel dm) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+          
+          // MUDAR AQUI !!!!!!
         dm.setValueAt("Pago",table.getSelectedRow(),3);
       }
     });

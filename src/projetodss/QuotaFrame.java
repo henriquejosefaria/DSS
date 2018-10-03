@@ -18,8 +18,9 @@ public class QuotaFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public QuotaFrame(Alunos alunos, ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas,Integer numeroAluno) {
+    public QuotaFrame(ProjetoDSS p, Alunos alunos, ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas,Integer numeroAluno) {
         initComponents();
+        this.p = p;
         this.numeroAluno = numeroAluno;
         this.alunos = alunos;
         this.quotas = quotas;
@@ -34,7 +35,7 @@ public class QuotaFrame extends javax.swing.JFrame {
         jTable1.setModel(dm);
         jTable1.getColumn("Pagamento").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Pagamento").setCellEditor(
-        new ButtonPagar(new JCheckBox(),jTable1,dm));
+        new ButtonPagar(new JCheckBox(),this.p,jTable1,dm));
         
     }
     
@@ -151,4 +152,5 @@ public class QuotaFrame extends javax.swing.JFrame {
     private Integer numeroAluno; 
     private Map <Integer,Aluno> membros = new HashMap<Integer,Aluno>();
     private DefaultTableModel dm;
+    private ProjetoDSS p;
 }
