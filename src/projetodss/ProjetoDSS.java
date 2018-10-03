@@ -16,11 +16,12 @@ import java.io.Serializable;
 import java.lang.ClassNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 /**
  *
  * @author André
  */
-public class ProjetoDSS implements Serializable {
+public class ProjetoDSS extends Observable implements Serializable {
 
     private Quotas quotas;
     private Alunos alunos;
@@ -59,10 +60,14 @@ public class ProjetoDSS implements Serializable {
         this.quotas.addQuota(q);
          Aluno owner =  this.alunos.getAluno(q.getOwner());
            owner.addQuotaAPagar(q.getId());
+            setChanged();
+            notifyObservers(q);
     }
     
     public void addAluno(Aluno a){
         this.alunos.addAluno(a);
+        setChanged();
+        notifyObservers(a);
     }
     
     public void save() throws IOException{

@@ -8,12 +8,14 @@ package projetodss;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-public class QuotaFrame extends javax.swing.JFrame {
+public class QuotaFrame extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form NewJFrame
@@ -46,7 +48,13 @@ public class QuotaFrame extends javax.swing.JFrame {
             dm.addRow(new Object[]{idPagas.toString(),p.getQuotas().getQuotas().get(idPagas).getData(),p.getQuotas().getQuotas().get(idPagas).getValor(),"Pago","Pagar"});//,new JButton});
         }
     }
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        Quota q = (Quota) arg;
+        dm.addRow(new Object[]{Integer.toString(q.getId()),p.getQuotas().getQuotas().get(q.getId()).getData(),p.getQuotas().getQuotas().get(q.getId()).getValor(),"Nao Pago","Pagar"});
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,4 +158,5 @@ public class QuotaFrame extends javax.swing.JFrame {
     private Map <Integer,Aluno> membros = new HashMap<Integer,Aluno>();
     private DefaultTableModel dm;
     private ProjetoDSS p;
+
 }

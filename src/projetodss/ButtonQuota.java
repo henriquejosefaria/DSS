@@ -33,8 +33,9 @@ class ButtonQuota extends DefaultCellEditor {
        quotasPagas = p.getAlunos().getAluno(numeroAluno).getQuotasPagas();
        quotasAPagar = p.getAlunos().getAluno(numeroAluno).getQuotasAPagar();
         
-        QuotaFrame ola = new  QuotaFrame(p,quotasAPagar,quotasPagas,numeroAluno);
-        ola.setVisible(true);
+        QuotaFrame q = new  QuotaFrame(p,quotasAPagar,quotasPagas,numeroAluno);
+        p.addObserver(q);
+        q.setVisible(true);
         
 
       }

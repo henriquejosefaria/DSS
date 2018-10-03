@@ -89,19 +89,14 @@ public class AddQuotaFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void adicionaQuota(Quota quota){
-        p.getQuotas().addQuota(quota);
-        Aluno owner =  p.getAlunos().getAluno(numeroAluno);
-        owner.addQuotaAPagar(quota.getId());
-    }
+
     
     private void OnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnMouseClicked
        String svalor = jTextField1.getText();
        if(svalor.matches("[0-9]+")){
            int valor = Integer.parseInt(svalor);
            Quota novaQuota = new Quota(numeroAluno,valor);
-           adicionaQuota(novaQuota);
-           dm.addRow(new Object[]{Integer.toString(novaQuota.getId()),p.getQuotas().getQuotas().get(novaQuota.getId()).getData(),p.getQuotas().getQuotas().get(novaQuota.getId()).getValor(),"Nao Pago","Pagar"});
+           p.addQuota(novaQuota);
            try {
                 p.save();
             } catch (IOException ex) {
