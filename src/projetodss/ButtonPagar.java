@@ -25,17 +25,11 @@ class ButtonPagar extends DefaultCellEditor {
 
   public ButtonPagar(JCheckBox checkBox, JTable table , DefaultTableModel dm) {
     super(checkBox);
-    //this.alunos = alunos; // retirar????
-    //this.quotas = quotas; // retirar????
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-          System.out.println("ola");
         dm.setValueAt("Pago",table.getSelectedRow(),3);
-        //dm.isCellEditable(
-        
-       // button.setVisible(false);
       }
     });
   }

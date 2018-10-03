@@ -24,20 +24,14 @@ class ButtonQuota extends DefaultCellEditor {
 
   public ButtonQuota(JCheckBox checkBox, Alunos alunos, Quotas quotas,JTable table) {
     super(checkBox);
-   /* if(numero.length() > 1){
-        numeroAluno = Integer.parseInt(numero.substring(1));
-    }*/
-    //this.alunos = alunos; // retirar????
-    //this.quotas = quotas; // retirar????
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         String numero = (String) table.getValueAt(table.getSelectedRow(),0);
         numeroAluno = Integer.parseInt(numero);
-        System.out.println(numeroAluno);
-       quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas(); // criada a 1ª lista
-       quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar(); // criada a 2ª lista
+       quotasPagas = alunos.getAluno(numeroAluno).getQuotasPagas();
+       quotasAPagar = alunos.getAluno(numeroAluno).getQuotasAPagar();
         
         QuotaFrame ola = new  QuotaFrame(alunos,quotasAPagar,quotasPagas,quotas,numeroAluno);
         ola.setVisible(true);
@@ -64,11 +58,7 @@ class ButtonQuota extends DefaultCellEditor {
 
   public Object getCellEditorValue() {
     if (isPushed) {
-              //numeroAluno = 
-      //
-      // 
       JOptionPane.showMessageDialog(button, label + ": Ouch!");
-      // System.out.println(label + ": Ouch!");
 
     }
     isPushed = false;
