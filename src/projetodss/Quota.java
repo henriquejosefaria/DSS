@@ -8,7 +8,7 @@ package projetodss;
 public class Quota {
     
     private int id;
-    private String data; //talvez mudar para outro formato?
+    private String data;
     private double valor;
     private boolean estado; //0: não paga / 1: paga
     private int owner;

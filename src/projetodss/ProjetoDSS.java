@@ -6,10 +6,7 @@
 package projetodss;
 import javax.swing.JButton;
 import javax.swing.JTable;
-/**
- *
- * @author André
- */
+
 public class ProjetoDSS {
 
     private Quotas quotas = new Quotas();

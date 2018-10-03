@@ -13,10 +13,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author henriquefaria
- */
 public class QuotaFrame extends javax.swing.JFrame {
 
     /**
@@ -39,13 +35,6 @@ public class QuotaFrame extends javax.swing.JFrame {
         jTable1.getColumn("Pagamento").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Pagamento").setCellEditor(
         new ButtonPagar(new JCheckBox(),jTable1,dm));
-   // JScrollPane scroll = new JScrollPane(jTable2);
-   // getContentPane().add(scroll);
-    //setVisible(true);
-   
-      //  jTable2.setModel(d);
-        //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
-        //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
         
     }
     

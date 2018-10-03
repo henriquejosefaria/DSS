@@ -13,10 +13,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author henriquefaria
- */
 public class NewJFrame extends javax.swing.JFrame {
 
     /**
@@ -46,16 +42,9 @@ public class NewJFrame extends javax.swing.JFrame {
         jTable1.getColumn("Quota").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Quota").setCellEditor(
         new ButtonQuota(new JCheckBox(),alunos,quotas,jTable1));
-    
-        //int x = dm.getColumnCount()-1;
-        //for(int i = 0; i < dm.getRowCount();i++){
-        //    dm.setValueAt(new JButton(), i, x);
-        //}
         dfm = dm;
         
     }
-    
-    
         public void adicionaQuota(Quota quota){
         quotas.addQuota(quota);
         Aluno owner =  alunos.getAluno(quota.getOwner());
@@ -149,7 +138,6 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         jTable1.getValueAt(jTable1.getSelectedRow(),0);
-        System.out.println( jTable1.getValueAt(jTable1.getSelectedRow(),0));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

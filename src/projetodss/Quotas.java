@@ -26,7 +26,7 @@ public class Quotas {
     
     public void addQuota(Quota quota){
         quota.setId(contadorId);
-        quotas.put(quota.getId(),quota);//.clone());
+        quotas.put(quota.getId(),quota);
         contadorId++;
     }
     
@@ -38,12 +38,8 @@ public class Quotas {
        return quotas.containsKey(id);
     }
     
-    /*public void pagarQuota(int id){
-        //mudar "estado" para true
-    }*/
-    
     public Quota getQuota(int id){
-        return quotas.get(id);//.clone();
+        return quotas.get(id);
     }
     
     public Map<Integer, Quota> getQuotas(){

@@ -10,10 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author henriquefaria
- */
 public class NovoMembro extends javax.swing.JFrame {
 
     /**
@@ -135,8 +131,6 @@ public class NovoMembro extends javax.swing.JFrame {
             anoLectivo = Integer.parseInt(s2);
             morada = jTextField5.getText();
             alunos.addAluno(new Aluno(nome,numero,anoLectivo,morada,quotasPagas,quotasAPagar));
-            System.out.println(alunos.toString());
-            System.out.println("Entrei");
             dm.addRow(new Object[]{s1,nome,morada,Integer.toString(anoLectivo),"Quota"});
         }
         this.setVisible(false);
