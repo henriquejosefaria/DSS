@@ -16,17 +16,19 @@ import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.lang.ClassNotFoundException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author henriquefaria
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class AlunosFrame extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public AlunosFrame() {
         initComponents();
         try{
                 this.p = this.p.load();
@@ -61,7 +63,9 @@ public class NewJFrame extends javax.swing.JFrame {
                e.printStackTrace();
                System.out.println("\nErro: Input/ Output erro!");
            }
+                p.addObserver(this);
         DefaultTableModel dm = new DefaultTableModel();
+        this.dm = dm;
         dm.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
         for(Map.Entry<Integer,Aluno> aluno : this.p.getHashAlunos().entrySet()){
             System.out.println(aluno.getKey());
@@ -70,23 +74,15 @@ public class NewJFrame extends javax.swing.JFrame {
         jTable1.setModel(dm);
         jTable1.getColumn("Quota").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Quota").setCellEditor(
-        new ButtonQuota(new JCheckBox(),this.p,this.p.getAlunos(),this.p.getQuotas(),jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
-    // jTable2.setModel(dm);
-   // JScrollPane scroll = new JScrollPane(jTable2);
-   // getContentPane().add(scroll);
-    //setVisible(true);
-    
-        
-        
-
-        /*int x = dm.getColumnCount()-1;
-        for(int i = 0; i < dm.getRowCount();i++){
-            dm.setValueAt(new JButton(), i, x);
-        }*/
-      //  jTable2.setModel(d);
-        //jTable.getColumn("Quotas").setCellRenderer(new ButtonRenderer();
-        //jTable.getColumn("Quotas").setCellEditor(new ButtonEditor(new JButton()));
+        new ButtonQuota(new JCheckBox(),p,jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
        
+    }
+        @Override
+    public void update(Observable o, Object arg) {
+        Aluno novoAluno = (Aluno) arg;   
+        System.out.println("wtf");
+        dm.addRow(new Object[]{String.valueOf(novoAluno.getNumero()),novoAluno.getNome(),novoAluno.getMorada(),Integer.toString(novoAluno.getAnoLectivo()),"Quota"});//,new JButton});
+      
     }
 
     /**
@@ -198,21 +194,22 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlunosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlunosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlunosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlunosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        //</editor-fold>
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new NewJFrame().setVisible(false);
                 new MenuLogin().setVisible(true);
+                //new AlunosFrame().setVisible(true);
             }
         });
     }
@@ -227,7 +224,9 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private ProjetoDSS p = new ProjetoDSS();
+    private DefaultTableModel dm;
+
 }

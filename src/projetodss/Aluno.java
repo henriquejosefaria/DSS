@@ -87,7 +87,7 @@ public class Aluno implements Serializable {
     public void addQuotaPaga(int idQuotaPaga) {
         // tratar exceção
         if (this.quotasAPagar.contains(idQuotaPaga)){
-            this.quotasAPagar.remove(idQuotaPaga);
+            this.quotasAPagar.remove((Object)idQuotaPaga);
             this.quotasPagas.add(idQuotaPaga);
         }
     }

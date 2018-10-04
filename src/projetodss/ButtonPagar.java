@@ -8,7 +8,10 @@ package projetodss;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -29,9 +32,18 @@ class ButtonPagar extends DefaultCellEditor {
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-          
-          // MUDAR AQUI !!!!!!
+      String squotaId = (String) table.getValueAt(table.getSelectedRow(),0);
+        int quotaId = Integer.parseInt(squotaId);
+        Quota quota = p.getQuotas().getQuota(quotaId);
+        quota.setEstado(true);
+        p.getAluno(quota.getOwner()).addQuotaPaga(quotaId);
+        try {
+                p.save();
+            } catch (IOException ex) {
+                Logger.getLogger(ButtonPagar.class.getName()).log(Level.SEVERE, null, ex);
+            }
         dm.setValueAt("Pago",table.getSelectedRow(),3);
+        
       }
     });
   }

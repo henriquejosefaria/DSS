@@ -8,22 +8,22 @@ package projetodss;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-public class QuotaFrame extends javax.swing.JFrame {
+public class QuotaFrame extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form NewJFrame
      */
-    public QuotaFrame(ProjetoDSS p, Alunos alunos, ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas,Quotas quotas,Integer numeroAluno) {
+    public QuotaFrame(ProjetoDSS p, ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas, Integer numeroAluno) {
         initComponents();
         this.p = p;
         this.numeroAluno = numeroAluno;
-        this.alunos = alunos;
-        this.quotas = quotas;
         this.dm = dm;
         
         DefaultTableModel dm = new DefaultTableModel();
@@ -41,14 +41,20 @@ public class QuotaFrame extends javax.swing.JFrame {
     
     public void refreshTable(DefaultTableModel dm ,ArrayList<Integer> quotasAPagar, ArrayList<Integer> quotasPagas){
         for(Integer idAPagar : quotasAPagar){
-            dm.addRow(new Object[]{idAPagar.toString(),quotas.getQuotas().get(idAPagar).getData(),quotas.getQuotas().get(idAPagar).getValor(),"Nao Pago","Pagar"});//,new JButton});
+            dm.addRow(new Object[]{idAPagar.toString(),p.getQuotas().getQuotas().get(idAPagar).getData(),p.getQuotas().getQuotas().get(idAPagar).getValor(),"Nao Pago","Pagar"});//,new JButton});
         }
         
         for(Integer idPagas : quotasPagas){
-            dm.addRow(new Object[]{idPagas.toString(),quotas.getQuotas().get(idPagas).getData(),quotas.getQuotas().get(idPagas).getValor(),"Pago","Pagar"});//,new JButton});
+            dm.addRow(new Object[]{idPagas.toString(),p.getQuotas().getQuotas().get(idPagas).getData(),p.getQuotas().getQuotas().get(idPagas).getValor(),"Pago","Pagar"});//,new JButton});
         }
     }
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        Quota q = (Quota) arg;
+        dm.addRow(new Object[]{Integer.toString(q.getId()),p.getQuotas().getQuotas().get(q.getId()).getData(),p.getQuotas().getQuotas().get(q.getId()).getValor(),"Nao Pago","Pagar"});
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,7 +135,7 @@ public class QuotaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new AddQuotaFrame(quotas,alunos,numeroAluno,this,dm).setVisible(true);
+        new AddQuotaFrame(p,numeroAluno,this,dm).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -147,10 +153,10 @@ public class QuotaFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-    private Alunos alunos = new Alunos();
-    private Quotas quotas = new Quotas();
+
     private Integer numeroAluno; 
     private Map <Integer,Aluno> membros = new HashMap<Integer,Aluno>();
     private DefaultTableModel dm;
     private ProjetoDSS p;
+
 }

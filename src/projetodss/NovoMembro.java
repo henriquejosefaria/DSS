@@ -19,7 +19,7 @@ public class NovoMembro extends javax.swing.JFrame {
     /**
      * Creates new form NovoMembro
      */
-    public NovoMembro(ProjetoDSS p, Alunos alunos,NewJFrame jFrame) {
+    public NovoMembro(ProjetoDSS p, Alunos alunos,AlunosFrame jFrame) {
         initComponents();
         this.p = p;
         this.memberFrame = jFrame;
@@ -132,7 +132,8 @@ public class NovoMembro extends javax.swing.JFrame {
             numero = Integer.parseInt(s1);
             anoLectivo = Integer.parseInt(s2);
             morada = jTextField5.getText();
-            alunos.addAluno(new Aluno(nome,numero,anoLectivo,morada,quotasPagas,quotasAPagar));
+            Aluno novoAluno = new Aluno(nome,numero,anoLectivo,morada,quotasPagas,quotasAPagar);
+            p.addAluno(novoAluno);
             System.out.println(alunos.toString());
             System.out.println("Entrei");
             try {
@@ -141,8 +142,6 @@ public class NovoMembro extends javax.swing.JFrame {
                 Logger.getLogger(NovoMembro.class.getName()).log(Level.SEVERE, null, ex);
             }
             //memberFrame.dm.addRow(new Object[]{nome,numero,anoLectivo,morada,"Quota"});
-            memberFrame.setVisible(false);
-            new NewJFrame().setVisible(true);
             //memberFrame.setVisible(true);
         }
         this.setVisible(false);
@@ -202,6 +201,6 @@ public class NovoMembro extends javax.swing.JFrame {
     private ArrayList<Integer> quotasPagas = new ArrayList<>(); //organizadas por IDs
     private ArrayList<Integer> quotasAPagar = new ArrayList<>(); //organizadas por IDs
     private Alunos alunos;
-    private NewJFrame memberFrame;
+    private AlunosFrame memberFrame;
     private ProjetoDSS p;
 }
