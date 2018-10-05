@@ -20,7 +20,7 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
     /**
      * Creates new form NewJFrame
      */
-    public QuotaFrame(ProjetoDSS p, ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas, Integer numeroAluno) {
+    public QuotaFrame(ProjetoDSS p, ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas, Integer numeroAluno,int permissao) {
         initComponents();
         this.p = p;
         this.numeroAluno = numeroAluno;
@@ -28,24 +28,39 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
         
         DefaultTableModel dm = new DefaultTableModel();
         this.dm = dm;
+        if(permissao == 1){
+            dm.setColumnIdentifiers(new String [] {"Id", "Data", "Valor", "Estado","Pagamento"});
+            refreshTable(dm,quotasAPagar,quotasPagas,permissao);
         
-        dm.setColumnIdentifiers(new String [] {"Id", "Data", "Valor", "Estado","Pagamento"});
-        refreshTable(dm,quotasAPagar,quotasPagas);
-        
-        jTable1.setModel(dm);
-        jTable1.getColumn("Pagamento").setCellRenderer(new ButtonRenderer());
-        jTable1.getColumn("Pagamento").setCellEditor(
-        new ButtonPagar(new JCheckBox(),this.p,jTable1,dm));
+            jTable1.setModel(dm);
+            jTable1.getColumn("Pagamento").setCellRenderer(new ButtonRenderer());
+            jTable1.getColumn("Pagamento").setCellEditor(
+            new ButtonPagar(new JCheckBox(),this.p,jTable1,dm));
+        } else{
+            dm.setColumnIdentifiers(new String [] {"Id", "Data", "Valor", "Estado"});
+            refreshTable(dm,quotasAPagar,quotasPagas,permissao);
+            jTable1.setModel(dm);
+        }
         
     }
     
-    public void refreshTable(DefaultTableModel dm ,ArrayList<Integer> quotasAPagar, ArrayList<Integer> quotasPagas){
-        for(Integer idAPagar : quotasAPagar){
-            dm.addRow(new Object[]{idAPagar.toString(),p.getQuotas().getQuotas().get(idAPagar).getData(),p.getQuotas().getQuotas().get(idAPagar).getValor(),"Nao Pago","Pagar"});//,new JButton});
-        }
+    public void refreshTable(DefaultTableModel dm ,ArrayList<Integer> quotasAPagar, ArrayList<Integer> quotasPagas,int permissao){
+        if(permissao == 1){
+           for(Integer idAPagar : quotasAPagar){
+               dm.addRow(new Object[]{idAPagar.toString(),p.getQuotas().getQuotas().get(idAPagar).getData(),p.getQuotas().getQuotas().get(idAPagar).getValor(),"Nao Pago","Pagar"});//,new JButton});
+            }
         
-        for(Integer idPagas : quotasPagas){
-            dm.addRow(new Object[]{idPagas.toString(),p.getQuotas().getQuotas().get(idPagas).getData(),p.getQuotas().getQuotas().get(idPagas).getValor(),"Pago","Pagar"});//,new JButton});
+           for(Integer idPagas : quotasPagas){
+               dm.addRow(new Object[]{idPagas.toString(),p.getQuotas().getQuotas().get(idPagas).getData(),p.getQuotas().getQuotas().get(idPagas).getValor(),"Pago","Pagar"});//,new JButton});
+           }
+        } else{
+            for(Integer idAPagar : quotasAPagar){
+               dm.addRow(new Object[]{idAPagar.toString(),p.getQuotas().getQuotas().get(idAPagar).getData(),p.getQuotas().getQuotas().get(idAPagar).getValor(),"Nao Pago"});//,new JButton});
+            }
+        
+           for(Integer idPagas : quotasPagas){
+               dm.addRow(new Object[]{idPagas.toString(),p.getQuotas().getQuotas().get(idPagas).getData(),p.getQuotas().getQuotas().get(idPagas).getValor(),"Pago"});//,new JButton});
+           }
         }
     }
     

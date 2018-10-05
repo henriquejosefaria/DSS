@@ -174,7 +174,7 @@ public class MenuLogin extends javax.swing.JFrame {
                 System.out.println(a.getPassword().equals(password));
                 if(a.getPassword().equals(password)){
                     this.setVisible(false);
-                    new QuotaFrame(p,p.getAluno(numero).getQuotasPagas() ,p.getAluno(numero).getQuotasAPagar(),numero).setVisible(true);
+                    new QuotaFrame(p,p.getAluno(numero).getQuotasPagas() ,p.getAluno(numero).getQuotasAPagar(),numero,0).setVisible(true);
                 }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

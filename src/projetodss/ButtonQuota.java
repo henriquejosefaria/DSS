@@ -28,7 +28,6 @@ class ButtonQuota extends DefaultCellEditor {
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-          System.out.println("WOWOWOWOOW");
         String numero = (String) table.getValueAt(table.getSelectedRow(),0);
         System.out.println(numero);
         
@@ -37,7 +36,7 @@ class ButtonQuota extends DefaultCellEditor {
        quotasPagas = p.getAlunos().getAluno(numeroAluno).getQuotasPagas();
        quotasAPagar = p.getAlunos().getAluno(numeroAluno).getQuotasAPagar();
         
-        QuotaFrame q = new  QuotaFrame(p,quotasAPagar,quotasPagas,numeroAluno);
+        QuotaFrame q = new  QuotaFrame(p,quotasAPagar,quotasPagas,numeroAluno,1);
         p.addObserver(q);
         q.setVisible(true);
         

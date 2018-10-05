@@ -176,8 +176,6 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuLogin().setVisible(true);
-                //new AlunosFrame().setVisible(true);
             }
         });
     }
