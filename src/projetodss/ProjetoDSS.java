@@ -25,24 +25,32 @@ public class ProjetoDSS extends Observable implements Serializable {
 
     private Quotas quotas;
     private Alunos alunos;
+    private Admin admin;
     
     public ProjetoDSS(){
         this.quotas = new Quotas();
         this.alunos = new Alunos();
+        this.admin = new Admin();
     }
     
-    public ProjetoDSS(Alunos alunos,Quotas quotas){
+    public ProjetoDSS(Alunos alunos,Quotas quotas, Admin admin){
         this.alunos = new Alunos(alunos);
         this.quotas = new Quotas(quotas);
+        this.admin = new Admin(admin);
     }
     
     public ProjetoDSS(ProjetoDSS p){
         this.alunos = new Alunos(p.getAlunos());
         this.quotas = new Quotas(p.getQuotas());
+         this.admin = new Admin(p.getAdmin());
     }
     
     public Quotas getQuotas(){
         return this.quotas;
+    }
+    
+    public Admin getAdmin(){
+        return this.admin;
     }
     
     public Map<Integer,Aluno> getHashAlunos(){
@@ -68,6 +76,10 @@ public class ProjetoDSS extends Observable implements Serializable {
         this.alunos.addAluno(a);
         setChanged();
         notifyObservers(a);
+    }
+    
+    public void addAdmin(Admin admin){
+        this.admin = admin;
     }
     
     public void save() throws IOException{

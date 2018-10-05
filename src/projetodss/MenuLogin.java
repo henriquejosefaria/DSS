@@ -5,6 +5,11 @@
  */
 package projetodss;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author henriquefaria
@@ -16,6 +21,42 @@ public class MenuLogin extends javax.swing.JFrame {
      */
     public MenuLogin() {
         initComponents();
+        try{
+                this.p = this.p.load();
+           }catch(FileNotFoundException e){
+               Admin admin = new Admin();
+               Aluno aluno1 = new Aluno();
+               Aluno aluno2 = new Aluno("Filipe",83099,"pass1",2018,"Vila Verde",new ArrayList<Integer>(),new ArrayList<Integer>());
+               Aluno aluno3 = new Aluno("Andre",82260,"pass2",2018,"Braga",new ArrayList<Integer>(),new ArrayList<Integer>());
+               this.p.addAdmin(admin);
+               this.p.addAluno(aluno1);
+               this.p.addAluno(aluno2);
+               this.p.addAluno(aluno3);
+               Quota quota1 = new Quota(83099,350);
+               Quota quota2 = new Quota(83099,456);
+               Quota quota3 = new Quota(83099,999);
+               Quota quota4 = new Quota(83099,435);
+               
+               this.p.addQuota(quota1);
+               this.p.addQuota(quota2);
+               this.p.addQuota(quota3);
+               this.p.addQuota(quota4);
+               
+               Aluno k = this.p.getAluno(83099);
+           }catch(IOException e){
+               e.printStackTrace();
+               System.out.println("\nErro: Input/ Output erro!");
+           }catch(ClassNotFoundException e){
+               e.printStackTrace();
+               System.out.println("\nErro: Class não encontrada!");
+           }
+        try{
+            this.p.save();
+        } catch(IOException e){
+               e.printStackTrace();
+               System.out.println("\nErro: Input/ Output erro!");
+           }
+        
         
     }
 
@@ -37,7 +78,7 @@ public class MenuLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Número:");
 
         jLabel2.setText("Password:");
 
@@ -70,11 +111,14 @@ public class MenuLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(75, 75, 75)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                             .addComponent(jPasswordField1)))
@@ -104,6 +148,8 @@ public class MenuLogin extends javax.swing.JFrame {
                 .addGap(56, 56, 56))
         );
 
+        jTextField1.getAccessibleContext().setAccessibleName("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -112,8 +158,25 @@ public class MenuLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String numero;
-        String password;
+        int numero = Integer.parseInt(jTextField1.getText());
+        String password = new String(jPasswordField1.getPassword());
+        Aluno a = p.getAluno(numero);
+        Admin b1 = p.getAdmin();
+        Admin b2 = new Admin(numero,password);
+        if(a == null && b1.equals(b2)){
+            System.out.println("1ª iteração");
+            this.setVisible(false);
+            new AlunosFrame(p).setVisible(true);
+        }
+        if(password != null && a != null){
+                System.out.println(a.toString());
+                System.out.println("2ª iteração");
+                System.out.println(a.getPassword().equals(password));
+                if(a.getPassword().equals(password)){
+                    this.setVisible(false);
+                    new QuotaFrame(p,p.getAluno(numero).getQuotasPagas() ,p.getAluno(numero).getQuotasAPagar(),numero).setVisible(true);
+                }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
@@ -163,4 +226,5 @@ public class MenuLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+private ProjetoDSS p = new ProjetoDSS();
 }

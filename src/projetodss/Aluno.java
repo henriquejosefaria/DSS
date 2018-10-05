@@ -12,6 +12,7 @@ public class Aluno implements Serializable {
     
     private String nome;
     private int numero;
+    private String password;
     private int anoLectivo;
     private String morada;
     private ArrayList<Integer> quotasPagas; //organizadas por IDs
@@ -21,14 +22,16 @@ public class Aluno implements Serializable {
        nome = "Henrique";
        morada = "Porto";
        numero = 84354;
+       password = "passBasica";
        anoLectivo = 2018;
        quotasPagas = new ArrayList<>();
        quotasAPagar = new ArrayList<>();
     }
 
-    public Aluno(String nome,int numero,int anoLectivo,String morada,ArrayList<Integer> quotasPagas, ArrayList<Integer> quotasAPagar) {
+    public Aluno(String nome,int numero,String password,int anoLectivo,String morada,ArrayList<Integer> quotasPagas, ArrayList<Integer> quotasAPagar) {
         this.nome = nome;
         this.numero = numero;
+        this.password = password;
         this.anoLectivo = anoLectivo;
         this.morada = morada;
         this.quotasPagas = new ArrayList<>(quotasPagas);
@@ -37,6 +40,7 @@ public class Aluno implements Serializable {
 
     public Aluno(Aluno c){
         this.numero = c.getNumero();
+        this.password = c.getPassword();
         this.nome = c.getNome();
         this.morada = c.getMorada();
         this.anoLectivo = c.getAnoLectivo();
@@ -50,6 +54,10 @@ public class Aluno implements Serializable {
 
     public int getNumero() {
         return this.numero;
+    }
+    
+    public String getPassword(){
+        return this.password;
     }
     
     public int getAnoLectivo() {
@@ -74,6 +82,10 @@ public class Aluno implements Serializable {
     
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+    
+    public void setNumero(String password) {
+        this.password = password;
     }
     
     public void setAnoLectivo(int anoLectivo) {
@@ -103,6 +115,7 @@ public class Aluno implements Serializable {
             Aluno a = (Aluno)o;
             b = this.nome.equals(a.getNome()) &&
                 this.numero == a.getNumero() &&
+                this.password == a.getPassword() &&
                 this.anoLectivo == a.getAnoLectivo() &&
                 this.morada.equals(a.getMorada());
         }
@@ -115,6 +128,8 @@ public class Aluno implements Serializable {
         sb.append(this.nome);
         sb.append(", ");
         sb.append(this.numero);
+        sb.append(", ");
+        sb.append(this.password);
         sb.append(", ");
         sb.append(this.anoLectivo);
         sb.append(", ");

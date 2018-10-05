@@ -28,42 +28,10 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
     /**
      * Creates new form NewJFrame
      */
-    public AlunosFrame() {
+    public AlunosFrame(ProjetoDSS p) {
         initComponents();
-        try{
-                this.p = this.p.load();
-           }catch(FileNotFoundException e){
-               Aluno aluno1 = new Aluno();
-               Aluno aluno2 = new Aluno("Filipe",83099,2018,"Vila Verde",new ArrayList<Integer>(),new ArrayList<Integer>());
-               Aluno aluno3 = new Aluno("Andre",82260,2018,"Braga",new ArrayList<Integer>(),new ArrayList<Integer>());
-               this.p.addAluno(aluno1);
-               this.p.addAluno(aluno2);
-               this.p.addAluno(aluno3);
-               Quota quota1 = new Quota(83099,350);
-               Quota quota2 = new Quota(83099,456);
-               Quota quota3 = new Quota(83099,999);
-               Quota quota4 = new Quota(83099,435);
-               
-               this.p.addQuota(quota1);
-               this.p.addQuota(quota2);
-               this.p.addQuota(quota3);
-               this.p.addQuota(quota4);
-               
-               Aluno k = this.p.getAluno(83099);
-           }catch(IOException e){
-               e.printStackTrace();
-               System.out.println("\nErro: Input/ Output erro!");
-           }catch(ClassNotFoundException e){
-               e.printStackTrace();
-               System.out.println("\nErro: Class não encontrada!");
-           }
-        try{
-            this.p.save();
-        } catch(IOException e){
-               e.printStackTrace();
-               System.out.println("\nErro: Input/ Output erro!");
-           }
-                p.addObserver(this);
+        this.p = p;
+        p.addObserver(this);
         DefaultTableModel dm = new DefaultTableModel();
         this.dm = dm;
         dm.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
