@@ -12,6 +12,7 @@ public class Aluno implements Serializable {
     
     private String nome;
     private int numero;
+    private String email;
     private String password;
     private int anoLectivo;
     private String morada;
@@ -24,16 +25,18 @@ public class Aluno implements Serializable {
        numero = 84354;
        password = "passBasica";
        anoLectivo = 2018;
+       email = "filipe-Cunha1@hotmail.com";
        quotasPagas = new ArrayList<>();
        quotasAPagar = new ArrayList<>();
     }
 
-    public Aluno(String nome,int numero,String password,int anoLectivo,String morada,ArrayList<Integer> quotasPagas, ArrayList<Integer> quotasAPagar) {
+    public Aluno(String nome, String email,int numero,String password,int anoLectivo,String morada,ArrayList<Integer> quotasPagas, ArrayList<Integer> quotasAPagar) {
         this.nome = nome;
         this.numero = numero;
         this.password = password;
         this.anoLectivo = anoLectivo;
         this.morada = morada;
+        this.email = email;
         this.quotasPagas = new ArrayList<>(quotasPagas);
         this.quotasAPagar = new ArrayList<>(quotasAPagar);
     }
@@ -42,6 +45,7 @@ public class Aluno implements Serializable {
         this.numero = c.getNumero();
         this.password = c.getPassword();
         this.nome = c.getNome();
+        this.email = c.getEmail();
         this.morada = c.getMorada();
         this.anoLectivo = c.getAnoLectivo();
         this.quotasPagas = c.getQuotasPagas();
@@ -50,6 +54,10 @@ public class Aluno implements Serializable {
     
     public String getNome() {
         return this.nome;
+    }
+    
+    public String getEmail(){
+        return this.email;
     }
 
     public int getNumero() {
@@ -94,6 +102,10 @@ public class Aluno implements Serializable {
     
     public void setMorada(String morada) {
         this.morada = morada;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
     }
     
     public void addQuotaPaga(int idQuotaPaga) {

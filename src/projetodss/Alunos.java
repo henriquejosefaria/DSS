@@ -44,6 +44,10 @@ public class Alunos implements Serializable {
             this.alunos.put(a.getKey(),a.getValue());
         }
     }
+    public boolean existeAluno(int id){
+       return alunos.containsKey(id);
+    }
+    
     
     public String toString(){
         StringBuffer sb = new StringBuffer();
