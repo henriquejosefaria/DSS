@@ -128,7 +128,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(permissao == 0){&#xa;jButton1.setText(&quot;exit&quot;);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(permissao == 0){&#xa;jButton1.setText(&quot;Logout&quot;);&#xa;}"/>
       </AuxValues>
     </Component>
   </SubComponents>

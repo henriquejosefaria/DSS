@@ -122,7 +122,7 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
 
         jButton1.setText("back");
         if(permissao == 0){
-            jButton1.setText("exit");
+            jButton1.setText("Logout");
         }
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
