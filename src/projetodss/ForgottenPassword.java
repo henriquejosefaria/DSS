@@ -36,7 +36,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Insira o seu número de aluno para tentarmos recuperar a sua conta:");
 
@@ -99,6 +99,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
                 Aluno aluno = p.getAlunos().getAluno(numero);
                 new SendMail(aluno);
                 JOptionPane.showMessageDialog(null,"Enviamos um mail para o seu Email com os dados referentes a sua conta!", "Message" , JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
             }
             else{
                 JOptionPane.showMessageDialog(null,"Nao existe nenhuma conta associada ao número que inseriu!", "Message" , JOptionPane.INFORMATION_MESSAGE);

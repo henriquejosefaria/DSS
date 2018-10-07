@@ -8,6 +8,7 @@ package projetodss;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -187,25 +188,40 @@ public class MenuLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jTextField1.getText().equals("") || jTextField1.getText()== null || jPasswordField1.getPassword().equals("") || jPasswordField1.getPassword() == null){
+            JOptionPane.showMessageDialog(null,"Por favor preencha ambos os campos!", "Message" , JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(!jTextField1.getText().matches("[0-9]+")){
+            JOptionPane.showMessageDialog(null,"O numero só pode conter números!", "Message" , JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         int numero = Integer.parseInt(jTextField1.getText());
         String password = new String(jPasswordField1.getPassword());
         Aluno a = p.getAluno(numero);
         Admin b1 = p.getAdmin();
         Admin b2 = new Admin(numero,password);
         if(a == null && b1.equals(b2)){
-            System.out.println("1ª iteração");
+            JOptionPane.showMessageDialog(null,"Login efetuado com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
             new AlunosFrame(p).setVisible(true);
+            return;
         }
         if(password != null && a != null){
                 System.out.println(a.toString());
-                System.out.println("2ª iteração");
                 System.out.println(a.getPassword().equals(password));
                 if(a.getPassword().equals(password)){
+                    JOptionPane.showMessageDialog(null,"Login efetuado com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
                     this.setVisible(false);
                     new QuotaFrame(p,p.getAluno(numero).getQuotasPagas() ,p.getAluno(numero).getQuotasAPagar(),numero,0).setVisible(true);
                 }
+                else{
+                    JOptionPane.showMessageDialog(null,"Numero ou password errados!", "Message" , JOptionPane.WARNING_MESSAGE);
+                }
         }
+         else{
+              JOptionPane.showMessageDialog(null,"Numero ou password errados!", "Message" , JOptionPane.WARNING_MESSAGE);
+         }       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed

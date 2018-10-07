@@ -18,6 +18,7 @@ import java.lang.ClassNotFoundException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,7 +33,13 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.p = p;
         p.addObserver(this);
-        DefaultTableModel dm = new DefaultTableModel();
+        
+        DefaultTableModel dm = new DefaultTableModel(){
+            @Override
+        public boolean isCellEditable(int row, int column) {
+            if( column == 4)return true; return false;
+        }};
+        
         this.dm = dm;
         dm.setColumnIdentifiers(new String [] {"Número", "Nome", "Morada", "Ano Letivo","Quota"});
         for(Map.Entry<Integer,Aluno> aluno : this.p.getHashAlunos().entrySet()){
@@ -43,7 +50,7 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
         jTable1.getColumn("Quota").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Quota").setCellEditor(
         new ButtonQuota(new JCheckBox(),p,jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
-       
+       dm.isCellEditable(1,1);
     }
         @Override
     public void update(Observable o, Object arg) {
@@ -53,6 +60,8 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
         dm.addRow(new Object[]{String.valueOf(novoAluno.getNumero()),novoAluno.getNome(),novoAluno.getMorada(),Integer.toString(novoAluno.getAnoLectivo()),"Quota"});//,new JButton});
      }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,7 +168,8 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
+        JOptionPane.showMessageDialog(null,"Logout efetuado com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
         new MenuLogin().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

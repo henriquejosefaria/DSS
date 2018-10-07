@@ -12,6 +12,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,9 +26,12 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.p = p;
         this.numeroAluno = numeroAluno;
-        this.dm = dm;
         
-        DefaultTableModel dm = new DefaultTableModel();
+        DefaultTableModel dm = new DefaultTableModel(){
+            @Override
+    public boolean isCellEditable(int row, int column) {
+       if( column == 4)return true; return false;
+                }};
         this.dm = dm;
         if(permissao == 1){
             dm.setColumnIdentifiers(new String [] {"Id", "Data", "Valor", "Estado","Pagamento"});
@@ -173,15 +177,16 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new AddQuotaFrame(p,numeroAluno,this,dm).setVisible(true);
+        new AddQuotaFrame(p,numeroAluno,this).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(permissao == 1){
-            this.setVisible(false);
+            this.dispose();
         }
         else{
-            this.setVisible(false);
+            JOptionPane.showMessageDialog(null,"Logout efetuado com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
             new MenuLogin().setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

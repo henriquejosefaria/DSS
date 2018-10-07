@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class AddQuotaFrame extends javax.swing.JFrame {
@@ -17,12 +18,11 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     /**    
      * Creates new form AddQuotaFrame
      * */
-    public AddQuotaFrame(ProjetoDSS p, Integer numeroAluno,QuotaFrame quotaFrame,DefaultTableModel dm) {
+    public AddQuotaFrame(ProjetoDSS p, Integer numeroAluno,QuotaFrame quotaFrame) {
         initComponents();
         this.p = p;
         this.numeroAluno = numeroAluno;
         this.quotaFrame = quotaFrame;
-        this.dm = dm;
     }
 
     /**
@@ -119,7 +119,8 @@ public class AddQuotaFrame extends javax.swing.JFrame {
                 Logger.getLogger(AddQuotaFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-       this.setVisible(false);
+       JOptionPane.showMessageDialog(null,"Quota Adicionada com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
+       this.dispose();
     }//GEN-LAST:event_OnMouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -127,7 +128,7 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -175,5 +176,4 @@ public class AddQuotaFrame extends javax.swing.JFrame {
     private ProjetoDSS p;
     private Integer numeroAluno;
     private QuotaFrame quotaFrame;
-    private DefaultTableModel dm;
 }
