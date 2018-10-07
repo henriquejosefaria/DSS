@@ -185,9 +185,8 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
             this.dispose();
         }
         else{
-            JOptionPane.showMessageDialog(null,"Logout efetuado com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
             new MenuLogin().setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

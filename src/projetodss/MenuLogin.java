@@ -213,7 +213,7 @@ public class MenuLogin extends javax.swing.JFrame {
                 if(a.getPassword().equals(password)){
                     JOptionPane.showMessageDialog(null,"Login efetuado com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
                     this.setVisible(false);
-                    new QuotaFrame(p,p.getAluno(numero).getQuotasPagas() ,p.getAluno(numero).getQuotasAPagar(),numero,0).setVisible(true);
+                    new QuotaFrame(p,p.getAluno(numero).getQuotasAPagar(),p.getAluno(numero).getQuotasPagas(),numero,0).setVisible(true);
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"Numero ou password errados!", "Message" , JOptionPane.WARNING_MESSAGE);

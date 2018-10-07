@@ -168,9 +168,8 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JOptionPane.showMessageDialog(null,"Logout efetuado com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
-        new MenuLogin().setVisible(true);
+    new MenuLogin().setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
   
