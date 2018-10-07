@@ -103,7 +103,7 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton2.setText("back");
+        jButton2.setText("exit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

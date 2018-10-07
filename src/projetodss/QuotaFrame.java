@@ -21,6 +21,7 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
      * Creates new form NewJFrame
      */
     public QuotaFrame(ProjetoDSS p, ArrayList<Integer> quotasAPagar,ArrayList<Integer> quotasPagas, Integer numeroAluno,int permissao) {
+        this.permissao = permissao;
         initComponents();
         this.p = p;
         this.numeroAluno = numeroAluno;
@@ -120,6 +121,9 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("back");
+        if(permissao == 0){
+            jButton1.setText("exit");
+        }
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -171,7 +175,13 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
+        if(permissao == 1){
+            this.setVisible(false);
+        }
+        else{
+            this.setVisible(false);
+            new MenuLogin().setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -195,5 +205,6 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
     private Map <Integer,Aluno> membros = new HashMap<Integer,Aluno>();
     private DefaultTableModel dm;
     private ProjetoDSS p;
+    private int permissao;
 
 }
