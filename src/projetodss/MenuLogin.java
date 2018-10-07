@@ -27,7 +27,7 @@ public class MenuLogin extends javax.swing.JFrame {
                Admin admin = new Admin();
                Aluno aluno1 = new Aluno();
                Aluno aluno2 = new Aluno("Filipe","filipe-Cunha1@hotmail.com",83099,"pass1",2018,"Vila Verde",new ArrayList<Integer>(),new ArrayList<Integer>());
-               Aluno aluno3 = new Aluno("Andre","Joao@gmail.com",82260,"pass2",2018,"Braga",new ArrayList<Integer>(),new ArrayList<Integer>());
+               Aluno aluno3 = new Aluno("Andre","henriquejosefaria@gmail.com",82260,"pass2",2018,"Braga",new ArrayList<Integer>(),new ArrayList<Integer>());
                this.p.addAdmin(admin);
                this.p.addAluno(aluno1);
                this.p.addAluno(aluno2);
