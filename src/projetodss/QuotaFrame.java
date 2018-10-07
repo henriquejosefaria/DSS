@@ -130,6 +130,8 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
+        if(permissao == 0) jMenuBar1.setVisible(false);
+
         jMenu1.setText("File");
 
         jMenuItem1.setActionCommand("Adicionar Quota");
