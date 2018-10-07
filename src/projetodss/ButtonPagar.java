@@ -34,15 +34,12 @@ class ButtonPagar extends DefaultCellEditor {
       public void actionPerformed(ActionEvent e) {
       String squotaId = (String) table.getValueAt(table.getSelectedRow(),0);
         int quotaId = Integer.parseInt(squotaId);
-        Quota quota = p.getQuotas().getQuota(quotaId);
-        quota.setEstado(true);
-        p.getAluno(quota.getOwner()).addQuotaPaga(quotaId);
+        p.pagarQuota(quotaId);
         try {
                 p.save();
             } catch (IOException ex) {
                 Logger.getLogger(ButtonPagar.class.getName()).log(Level.SEVERE, null, ex);
             }
-        dm.setValueAt("Pago",table.getSelectedRow(),3);
         
       }
     });

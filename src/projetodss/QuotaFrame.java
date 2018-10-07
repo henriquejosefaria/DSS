@@ -66,9 +66,13 @@ public class QuotaFrame extends javax.swing.JFrame implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        Quota q = (Quota) arg;
-        dm.addRow(new Object[]{Integer.toString(q.getId()),p.getQuotas().getQuotas().get(q.getId()).getData(),p.getQuotas().getQuotas().get(q.getId()).getValor(),"Nao Pago","Pagar"});
-
+        if(arg instanceof Quota){
+            Quota q = (Quota) arg;
+            dm.addRow(new Object[]{Integer.toString(q.getId()),p.getQuotas().getQuotas().get(q.getId()).getData(),p.getQuotas().getQuotas().get(q.getId()).getValor(),"Nao Pago","Pagar"});
+        }
+        else{
+            dm.setValueAt("Pago",jTable1.getSelectedRow(),3);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.

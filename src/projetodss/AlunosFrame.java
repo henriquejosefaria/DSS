@@ -47,10 +47,11 @@ public class AlunosFrame extends javax.swing.JFrame implements Observer {
     }
         @Override
     public void update(Observable o, Object arg) {
+        if(arg instanceof Aluno){
         Aluno novoAluno = (Aluno) arg;   
         System.out.println("wtf");
         dm.addRow(new Object[]{String.valueOf(novoAluno.getNumero()),novoAluno.getNome(),novoAluno.getMorada(),Integer.toString(novoAluno.getAnoLectivo()),"Quota"});//,new JButton});
-      
+     }
     }
 
     /**

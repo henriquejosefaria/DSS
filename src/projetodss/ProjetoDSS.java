@@ -71,6 +71,13 @@ public class ProjetoDSS extends Observable implements Serializable {
             setChanged();
             notifyObservers(q);
     }
+    public void pagarQuota(int quotaID){
+        Quota quota = getQuotas().getQuota(quotaID);
+        quota.setEstado(true);
+        getAluno(quota.getOwner()).addQuotaPaga(quotaID);
+        setChanged();
+        notifyObservers();
+    }
     
     public void addAluno(Aluno a){
         this.alunos.addAluno(a);
