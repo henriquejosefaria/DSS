@@ -80,7 +80,19 @@ public class NovoMembro extends javax.swing.JFrame {
 
         jLabel6.setText("Password:");
 
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
         jLabel7.setText("Email:");
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +136,6 @@ public class NovoMembro extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, 0)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton1))
@@ -176,12 +187,13 @@ public class NovoMembro extends javax.swing.JFrame {
         String s1,s2,s3,s4;
         nome = jTextField1.getText();
         s1 = jTextField2.getText();
-        s3 = jTextField5.getText();
+        s3 = jTextField4.getText();
         s2 = jTextField3.getText();
         s4 = jTextField6.getText();
         if(s1.matches("^[0-9]") || (s2.matches("^[0-9]") || s2.length() == 4)){
             numero = Integer.parseInt(s1);
             password = s3;
+            email = s4;
             anoLectivo = Integer.parseInt(s2);
             morada = jTextField5.getText();
             Aluno novoAluno = new Aluno(nome,email,numero,password,anoLectivo,morada,quotasPagas,quotasAPagar);
@@ -207,6 +219,14 @@ public class NovoMembro extends javax.swing.JFrame {
         new AlunosFrame(p).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments

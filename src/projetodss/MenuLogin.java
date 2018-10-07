@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -211,16 +210,18 @@ public class MenuLogin extends javax.swing.JFrame {
                 System.out.println(a.toString());
                 System.out.println(a.getPassword().equals(password));
                 if(a.getPassword().equals(password)){
+                    
                     JOptionPane.showMessageDialog(null,"Login efetuado com sucesso!", "Message" , JOptionPane.INFORMATION_MESSAGE);
                     this.setVisible(false);
                     new QuotaFrame(p,p.getAluno(numero).getQuotasAPagar(),p.getAluno(numero).getQuotasPagas(),numero,0).setVisible(true);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null,"Numero ou password errados!", "Message" , JOptionPane.WARNING_MESSAGE);
+                    System.out.println(a.getPassword());
+                    JOptionPane.showMessageDialog(null,"Numero ou password errados2!", "Message" , JOptionPane.WARNING_MESSAGE);
                 }
         }
          else{
-              JOptionPane.showMessageDialog(null,"Numero ou password errados!", "Message" , JOptionPane.WARNING_MESSAGE);
+              JOptionPane.showMessageDialog(null,"Numero ou password errados1!", "Message" , JOptionPane.WARNING_MESSAGE);
          }       
     }//GEN-LAST:event_jButton1ActionPerformed
 
