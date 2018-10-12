@@ -17,6 +17,8 @@ import java.lang.ClassNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author André
@@ -75,6 +77,11 @@ public class ProjetoDSS extends Observable implements Serializable {
         Quota quota = getQuotas().getQuota(quotaID);
         quota.setEstado(true);
         getAluno(quota.getOwner()).addQuotaPaga(quotaID);
+        try {
+            save();
+        } catch (IOException ex) {
+            Logger.getLogger(ButtonPagar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setChanged();
         notifyObservers();
     }
